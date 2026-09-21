@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import PostCard from "../components/PostCard.astro";
 import { site } from "../data/site";
-import heroImage from "../assets/musebox-ai-video-studio.png";
+import heroImage from "../assets/musebox-adult-swimwear-editorial.jpg";
 
 const posts = (await getCollection("blog")).sort((a,b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 const faqs = [
@@ -24,9 +24,10 @@ const jsonLd = { "@context":"https://schema.org", "@graph":[
 ---
 <BaseLayout title="Musebox AI Video Guide: Workflow, Safety & Alternatives" description={site.description} keywords={["Musebox AI","Musebox AI video generator","Musebox review","Musebox alternatives","image to video AI"]} jsonLd={jsonLd}>
   <section class="hero">
-    <Image class="hero-image" src={heroImage} alt="Adult video creator in a blue AI editing studio" widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84} />
+    <Image class="hero-image" src={heroImage} alt="Adult model in turquoise swimwear posing on sunlit dunes" widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84} />
     <div class="hero-glow"></div>
     <div class="hero-copy reveal"><div class="kicker">Independent Musebox AI video guide</div><h1>Turn one frame into <span>a moving idea.</span></h1><p>Understand the Musebox AI video generator, Explore feed, collections, reels, image-to-video workflow, credit questions, consent checks, and the alternatives worth testing.</p><div class="hero-actions"><a class="button primary" href="#workflow">Map the workflow <Icon name="spark" /></a><a class="button ghost" href="/blog/musebox-ai-vs-playbox-ai/">Compare Musebox vs Playbox</a></div><div class="hero-trust"><span><Icon name="wand" /> Image to video</span><span><Icon name="spark" /> Reel workflow</span><span><Icon name="lock" /> Consent first</span><span>Independent research</span></div></div>
+    <div class="photo-credit">Editorial image: <a href="https://www.pexels.com/photo/11455866/" target="_blank" rel="noopener noreferrer">Fran Bertucci / Pexels</a> · no endorsement implied</div>
   </section>
 
   <section class="section intent-grid"><div><div class="section-label">01 / Search intent, clarified</div><h2>Which <span>Musebox</span> are you looking for?</h2></div><div class="intent-copy"><p class="lead">Search results mix several products with the same name. This site covers <strong>musebox.ai</strong>, the adult-oriented AI video generator—not the unrelated prompt library or photo manager.</p><p>Our Musebox review focuses on the decisions that affect a real project: source-image rights, motion quality, duration, queues, credits, saved collections, output handling, privacy, and platform alternatives.</p><div class="keyword-line"><span>Musebox AI review</span><span>Musebox AI video generator</span><span>image to video AI</span><span>Musebox alternatives</span><span>AI video privacy</span></div></div></section>
