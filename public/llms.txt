@@ -1,0 +1,34 @@
+# Musebox AI Video Guide
+
+> An independent Musebox AI video guide covering image-to-video workflows, reels, collections, privacy, consent, credits, safety, and leading alternatives.
+
+Canonical publication: https://musebox.fun/
+
+This is an independent editorial publication, not the official provider. Articles distinguish published provider information from suggested evaluation methods. Examples and proposed tests are not measured benchmark results. Check dated sources and live provider terms for changing features and prices.
+
+## Main pages
+
+- [Homepage](https://musebox.fun/): Overview and practical decision guidance.
+- [Blog and comparisons](https://musebox.fun/blog/): Browse the editorial article collection.
+
+## Comparisons
+
+- [Musebox AI vs Kling AI: Features, Strengths, Weaknesses](https://musebox.fun/blog/musebox-ai-vs-kling-ai/)
+- [Musebox AI vs Luma Dream Machine: Features, Strengths, Weaknesses](https://musebox.fun/blog/musebox-ai-vs-luma-dream-machine/)
+- [Musebox AI vs Pika: Features, Strengths, Weaknesses](https://musebox.fun/blog/musebox-ai-vs-pika/)
+- [Musebox AI vs Playbox AI: Which Image-to-Video Workflow Fits?](https://musebox.fun/blog/musebox-ai-vs-playbox-ai/)
+- [Musebox AI vs Runway: Adult-Focused Discovery or General Video Studio?](https://musebox.fun/blog/musebox-ai-vs-runway/)
+
+## Publication information
+
+- [About](https://musebox.fun/about/)
+- [Editorial policy](https://musebox.fun/editorial-policy/)
+- [Contact](https://musebox.fun/contact/)
+- [Privacy policy](https://musebox.fun/privacy/)
+- [Terms](https://musebox.fun/terms/)
+
+## Optional
+
+- [XML sitemap](https://musebox.fun/sitemap-index.xml): Canonical page inventory.
+- [RSS feed](https://musebox.fun/rss.xml): Published article updates.
+- [Robots policy](https://musebox.fun/robots.txt): Crawler access directives.
