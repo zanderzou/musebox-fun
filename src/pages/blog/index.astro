@@ -4,9 +4,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCard from "../../components/PostCard.astro";
 import { site } from "../../data/site";
 const posts = (await getCollection("blog")).sort((a,b)=>b.data.publishDate.valueOf()-a.data.publishDate.valueOf());
-const jsonLd={"@context":"https://schema.org","@type":"CollectionPage",name:"Musebox AI video comparisons and safety guides",url:`${site.url}/blog/`,description:"Independent Musebox AI video generator comparisons, workflow tests, consent checks, and privacy guidance.",hasPart:posts.map((post)=>({"@type":"Article",headline:post.data.title,url:`${site.url}/blog/${post.id}/`,datePublished:post.data.publishDate.toISOString()}))};
+const jsonLd={"@context":"https://schema.org","@type":"CollectionPage",name:"Musebox AI VS comparisons",url:`${site.url}/blog/`,description:"Five focused Musebox AI comparison guides covering features, strengths, weaknesses, cost, privacy, and best fit.",hasPart:posts.map((post)=>({"@type":"Article",headline:post.data.title,url:`${site.url}/blog/${post.id}/`,datePublished:post.data.publishDate.toISOString()}))};
 ---
-<BaseLayout title="Musebox AI Blog: Video Comparisons, Safety & Workflow" description="Independent Musebox AI guides covering image-to-video workflow, consent, privacy, credits, Playbox AI, Runway, and alternatives." keywords={["Musebox AI blog","Musebox comparison","Musebox alternatives","AI video safety"]} jsonLd={jsonLd}>
-  <section class="page-hero"><div class="ambient-orb"></div><span>MUSEBOX AI VIDEO LAB</span><h1>Measure the motion.<br />Protect the source.</h1><p>Original AI video comparisons and practical safety guides for evaluating Musebox and alternative image-to-video tools.</p></section>
+<BaseLayout title="Musebox AI Comparisons: Five Detailed VS Guides" description="Compare Musebox AI with Playbox AI, Runway, Kling AI, Pika, Luma Dream Machine using practical strengths, weaknesses, privacy, cost, and workflow tests." keywords={["Musebox AI comparison","Musebox AI vs","Musebox AI alternatives","best Musebox AI alternative"]} jsonLd={jsonLd}>
+  <section class="page-hero"><div class="ambient-orb"></div><span>MUSEBOX AI COMPARISON LIBRARY</span><h1>Five useful VS guides.<br />One repeatable test.</h1><p>Detailed Musebox AI comparisons focused on real differences, advantages, disadvantages, cost, privacy, and the user each product suits.</p></section>
   <section class="section blog-list"><div class="post-grid">{posts.map((post,index)=><PostCard post={post} index={index} />)}</div></section>
 </BaseLayout>
