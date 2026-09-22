@@ -5,7 +5,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import PostCard from "../components/PostCard.astro";
 import { site } from "../data/site";
-import heroImage from "../assets/musebox-adult-swimwear-editorial.jpg";
+import heroImage from "../assets/musebox-user-beach-selfie.jpg";
+import secondaryImage from "../assets/musebox-user-studio-selfie.png";
 
 const posts = (await getCollection("blog")).sort((a,b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
 const faqs = [
@@ -24,10 +25,10 @@ const jsonLd = { "@context":"https://schema.org", "@graph":[
 ---
 <BaseLayout title="Musebox AI Video Guide: Workflow, Safety & Alternatives" description={site.description} keywords={["Musebox AI","Musebox AI video generator","Musebox review","Musebox alternatives","image to video AI"]} jsonLd={jsonLd}>
   <section class="hero">
-    <Image class="hero-image" src={heroImage} alt="Adult model in turquoise swimwear posing on sunlit dunes" widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84} />
+    <Image class="hero-image" src={heroImage} alt="Adult model taking a colorful beach selfie" widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84} />
     <div class="hero-glow"></div>
     <div class="hero-copy reveal"><div class="kicker">Independent Musebox AI video guide</div><h1>Turn one frame into <span>a moving idea.</span></h1><p>Understand the Musebox AI video generator, Explore feed, collections, reels, image-to-video workflow, credit questions, consent checks, and the alternatives worth testing.</p><div class="hero-actions"><a class="button primary" href="#workflow">Map the workflow <Icon name="spark" /></a><a class="button ghost" href="/blog/musebox-ai-vs-playbox-ai/">Compare Musebox vs Playbox</a></div><div class="hero-trust"><span><Icon name="wand" /> Image to video</span><span><Icon name="spark" /> Reel workflow</span><span><Icon name="lock" /> Consent first</span><span>Independent research</span></div></div>
-    <div class="photo-credit">Editorial image: <a href="https://www.pexels.com/photo/11455866/" target="_blank" rel="noopener noreferrer">Fran Bertucci / Pexels</a> · no endorsement implied</div>
+    <div class="photo-credit">User-provided adult editorial · no endorsement implied</div>
   </section>
 
   <section class="section intent-grid"><div><div class="section-label">01 / Search intent, clarified</div><h2>Which <span>Musebox</span> are you looking for?</h2></div><div class="intent-copy"><p class="lead">Search results mix several products with the same name. This site covers <strong>musebox.ai</strong>, the adult-oriented AI video generator—not the unrelated prompt library or photo manager.</p><p>Our Musebox review focuses on the decisions that affect a real project: source-image rights, motion quality, duration, queues, credits, saved collections, output handling, privacy, and platform alternatives.</p><div class="keyword-line"><span>Musebox AI review</span><span>Musebox AI video generator</span><span>image to video AI</span><span>Musebox alternatives</span><span>AI video privacy</span></div></div></section>
@@ -45,6 +46,7 @@ const jsonLd = { "@context":"https://schema.org", "@graph":[
 
   <section class="section seo-copy" aria-labelledby="musebox-fun-research">
     <div class="section-head"><div><div class="section-label">06 / Detailed Musebox AI research</div><h2 id="musebox-fun-research">A deeper Musebox AI guide<br/><span>for careful comparison.</span></h2></div><p>This text-led section expands the practical questions people ask after the first product overview.</p></div>
+    <figure class="seo-visual"><Image src={secondaryImage} alt="Adult model taking a studio-style mirror selfie" widths={[640,960,1280]} sizes="(max-width: 640px) 100vw, 1200px" loading="lazy" quality={84}/><figcaption><span>Image-to-video source</span><strong>Clear faces and simple framing make motion quality easier to evaluate.</strong></figcaption></figure>
     <div class="seo-copy-grid">
       <article><h3>What to evaluate in a Musebox AI review</h3><p>A useful Musebox AI review should explain the actual job the product performs: AI image-to-video creation, short reels, collections, motion quality, and credit use. Look past headline feature counts and test whether the main workflow stays clear from setup to a usable result.</p><p>Our recommended method is to animate the same licensed still with a controlled motion brief and compare usable seconds per credit. Record setup time, consistency, failed attempts, feature limits, and the real cost of one repeatable session. That creates evidence you can compare instead of relying on marketing language.</p></article>
       <article><h3>Musebox AI features, cost, and output quality</h3><p>Feature availability and plan limits can change. Before paying, identify which actions are included, which consume credits or tokens, whether retries are charged, and whether exports carry restrictions. A low subscription price can become expensive when the workflow needs repeated generations.</p><p>Quality should mean more than visual polish. Score control, repeatability, continuity, speed, and how often the result is actually usable. Verify current pricing and plan details on the official service at checkout.</p></article>
