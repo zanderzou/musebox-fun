@@ -23,7 +23,7 @@ const jsonLd = { "@context":"https://schema.org", "@graph":[
   { "@type":"FAQPage", mainEntity:faqs.map((faq)=>({"@type":"Question",name:faq.question,acceptedAnswer:{"@type":"Answer",text:faq.answer}})) }
 ]};
 ---
-<BaseLayout title="Musebox AI Video Guide: Workflow, Safety & Alternatives" description={site.description} keywords={["Musebox AI","Musebox AI video generator","Musebox review","Musebox alternatives","image to video AI"]} jsonLd={jsonLd}>
+<BaseLayout title="Musebox" description={site.description} keywords={["Musebox AI","Musebox AI video generator","Musebox review","Musebox alternatives","image to video AI"]} jsonLd={jsonLd}>
   <section class="hero">
     <Image class="hero-image" src={heroImage} alt="Adult model taking a colorful beach selfie" widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84} />
     <div class="hero-glow"></div>

@@ -1,4 +1,4 @@
-# Musebox AI Video Guide
+# Musebox
 
 > An independent Musebox AI video guide covering image-to-video workflows, reels, collections, privacy, consent, credits, safety, and leading alternatives.
 

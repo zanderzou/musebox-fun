@@ -1,5 +1,5 @@
 export const site = {
-  name: "Musebox AI Video Guide",
+  name: "Musebox",
   domain: "musebox.fun",
   url: "https://musebox.fun",
   description: "An independent Musebox AI video guide covering image-to-video workflows, reels, collections, privacy, consent, credits, safety, and leading alternatives.",
