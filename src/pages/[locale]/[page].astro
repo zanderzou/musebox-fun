@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { localeList, type LocaleSlug } from "../../data/localized-musebox";
+import { localizedInfo, type InfoKey } from "../../data/localized-info";
+import { site } from "../../data/site";
+export function getStaticPaths(){const infoKeys:InfoKey[]=["about","contact","editorial-policy","privacy","terms"];return localeList.flatMap((entry)=>infoKeys.map((page)=>({params:{locale:entry.slug,page},props:{localeSlug:entry.slug,page}})));}
+const localeSlug=Astro.props.localeSlug as LocaleSlug;
+const page=Astro.props.page as InfoKey;
+const copy=localizedInfo[localeSlug][page];
+const lang=localeList.find((entry)=>entry.slug===localeSlug)!.code;
+const pageUrl=`${site.url}/${localeSlug}/${page}/`;
+const jsonLd={"@context":"https://schema.org","@type":"WebPage",name:copy.title,url:pageUrl,description:copy.description,inLanguage:lang,isPartOf:{"@id":`${site.url}/#website`}};
+---
+<BaseLayout title={copy.title} description={copy.description} jsonLd={jsonLd}>
+  <section class="info-hero locale-info-hero"><div class="ambient-orb"></div><span>Musebox</span><h1>{copy.title}</h1><p>{copy.description}</p></section>
+  <article class="info-content locale-info-content">{copy.sections.map(([heading,paragraphs])=><section><h2>{heading}</h2>{paragraphs.map((paragraph)=><p>{paragraph}</p>)}</section>)}</article>
+</BaseLayout>

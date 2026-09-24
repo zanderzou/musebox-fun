@@ -2,15 +2,32 @@
 import type { CollectionEntry } from "astro:content";
 import Icon from "./Icon.astro";
 import { site } from "../data/site";
-interface Props { posts: CollectionEntry<"blog">[]; }
-const { posts } = Astro.props;
+import { homeCopy } from "../data/localized-musebox";
+import { localizedComparisons } from "../data/localized-articles";
+import { articleOrder, type SiteLocale } from "../data/locale-routes";
+interface Props { posts: CollectionEntry<"blog">[]; locale:SiteLocale; }
+const { posts,locale } = Astro.props;
+const root=locale==="en"?"/":`/${locale}/`;
+const ui=locale==="en"?{workflow:"Musebox workflow",compare:"Video tool comparisons",safety:"Safety checklist",official:"Official website",articles:"Blog",about:"About",privacy:"Privacy"}:homeCopy[locale].ui;
+const footerLabels:Record<string,{explore:string;information:string;latest:string;independent:string;noUploads:string;summary:string;terms:string;editorial:string;contact:string}>={
+  ja:{explore:"見る",information:"サイト情報",latest:"比較記事",independent:"独立した編集サイト · 成人向け",noUploads:"画像や生成動画を収集しません",summary:"Musebox の画像から動画への流れ、素材の同意、クレジットと代替サービスを検討します。",terms:"利用条件",editorial:"編集方針",contact:"お問い合わせ"},
+  ko:{explore:"둘러보기",information:"사이트 정보",latest:"비교 글",independent:"독립 편집 사이트 · 성인 대상",noUploads:"사진이나 생성 영상을 수집하지 않습니다",summary:"Musebox 사진 영상화, 동의, 크레딧과 대안을 살펴봅니다.",terms:"이용 조건",editorial:"편집 원칙",contact:"문의"},
+  "zh-hant":{explore:"探索",information:"網站資訊",latest:"比較文章",independent:"獨立編輯網站 · 僅限成年人",noUploads:"不收集圖片或生成影片",summary:"分析 Musebox 圖片轉影片、素材同意、點數和替代工具。",terms:"使用條款",editorial:"編輯方針",contact:"聯絡"},
+  es:{explore:"Explorar",information:"Información",latest:"Comparativas",independent:"Publicación independiente · Solo adultos",noUploads:"No recogemos imágenes ni vídeos generados",summary:"Musebox: vídeo desde imágenes, permisos, créditos y alternativas.",terms:"Términos",editorial:"Política editorial",contact:"Contacto"},
+  "pt-br":{explore:"Explorar",information:"Informações",latest:"Comparações",independent:"Publicação independente · Apenas adultos",noUploads:"Não recebemos imagens nem vídeos gerados",summary:"Musebox: foto para vídeo, consentimento, créditos e alternativas.",terms:"Termos",editorial:"Política editorial",contact:"Contato"},
+  ru:{explore:"Разделы",information:"Информация",latest:"Сравнения",independent:"Независимое издание · Только для взрослых",noUploads:"Не принимаем изображения и созданные видео",summary:"Musebox: видео из изображений, согласие, кредиты и альтернативы.",terms:"Условия",editorial:"Редакционная политика",contact:"Контакты"},
+  de:{explore:"Entdecken",information:"Informationen",latest:"Vergleiche",independent:"Unabhängige Redaktion · Nur für Erwachsene",noUploads:"Keine Bild- oder Video-Uploads",summary:"Musebox: Bild-zu-Video, Einwilligung, Credits und Alternativen.",terms:"Nutzungsbedingungen",editorial:"Redaktionsrichtlinien",contact:"Kontakt"},
+  fr:{explore:"Découvrir",information:"Informations",latest:"Comparatifs",independent:"Site éditorial indépendant · Adultes uniquement",noUploads:"Aucun envoi d'image ou de vidéo générée",summary:"Musebox : image vers vidéo, consentement, crédits et alternatives.",terms:"Conditions",editorial:"Politique éditoriale",contact:"Contact"},
+  ar:{explore:"استكشف",information:"معلومات الموقع",latest:"مقارنات",independent:"موقع تحريري مستقل · للبالغين فقط",noUploads:"لا نجمع صوراً أو فيديوهات مولّدة",summary:"Musebox: تحويل الصورة إلى فيديو، الموافقة، الأرصدة والبدائل.",terms:"الشروط",editorial:"السياسة التحريرية",contact:"التواصل"},
+};
+const labels=locale==="en"?{explore:"Explore",information:"Information",latest:"Latest guides",independent:"Independent editorial site · Adults only",noUploads:"No uploads or generated media collected",summary:"Independent research on Musebox image-to-video, consent, credits and alternatives.",terms:"Terms",editorial:"Editorial policy",contact:"Contact"}:footerLabels[locale];
 ---
 <footer>
   <div class="footer-grid">
-    <div><a class="brand" href="/"><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a><p>Independent research on Musebox AI video generation, image-to-video workflows, reels, collections, consent, privacy, credits, and alternatives.</p></div>
-    <div><h3>Explore</h3><a href="/#workflow">Musebox workflow</a><a href="/#compare">Video tool comparisons</a><a href="/#safety">Safety checklist</a><a href={site.officialUrl} rel="noopener" target="_blank">Official website</a></div>
-    <div><h3>Latest guides</h3>{posts.slice(0, 3).map((post) => <a href={`/blog/${post.id}/`}>{post.data.title}</a>)}</div>
-    <div><h3>Information</h3><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/editorial-policy/">Editorial policy</a><a href="/contact/">Contact</a></div>
+    <div><a class="brand" href={root}><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a><p>{labels.summary}</p></div>
+    <div><h3>{labels.explore}</h3><a href={`${root}#workflow`}>{ui.workflow}</a><a href={`${root}#compare`}>{ui.compare}</a><a href={`${root}#safety`}>{ui.safety}</a><a href={site.officialUrl} rel="noopener noreferrer" target="_blank">{ui.official}</a></div>
+    <div><h3>{labels.latest}</h3>{locale==="en"?posts.slice(0,3).map((post)=><a href={`/blog/${post.id}/`}>{post.data.title}</a>):articleOrder.slice(0,3).map((key)=><a href={`${root}blog/musebox-ai-vs-${key}/`}>{localizedComparisons[locale][key].title}</a>)}</div>
+    <div><h3>{labels.information}</h3><a href={`${root}about/`}>{ui.about}</a><a href={`${root}privacy/`}>{ui.privacy}</a><a href={`${root}terms/`}>{labels.terms}</a><a href={`${root}editorial-policy/`}>{labels.editorial}</a><a href={`${root}contact/`}>{labels.contact}</a></div>
   </div>
-  <div class="footer-bottom"><span>© <span data-year>2026</span> Musebox</span><span>Independent guide · Adults only</span><span>No uploads or generated media collected</span></div>
+  <div class="footer-bottom"><span>© <span data-year>2026</span> Musebox</span><span>{labels.independent}</span><span>{labels.noUploads}</span></div>
 </footer>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { localeList, type LocaleSlug } from "../../../data/localized-musebox";
+import { blogCopy } from "../../../data/localized-blog";
+import { localizedComparisons } from "../../../data/localized-articles";
+import { articleOrder, brandNames } from "../../../data/locale-routes";
+import { site } from "../../../data/site";
+export function getStaticPaths(){return localeList.map((entry)=>({params:{locale:entry.slug},props:{localeSlug:entry.slug}}));}
+const localeSlug=Astro.props.localeSlug as LocaleSlug;
+const copy=blogCopy[localeSlug];
+const url=`${site.url}/${localeSlug}/blog/`;
+const jsonLd={"@context":"https://schema.org","@type":"CollectionPage",name:copy.heading,url,description:copy.description,inLanguage:localeList.find((entry)=>entry.slug===localeSlug)!.code,hasPart:articleOrder.map((key)=>({"@type":"Article",headline:localizedComparisons[localeSlug][key].title,url:`${site.url}/${localeSlug}/blog/musebox-ai-vs-${key}/`}))};
+---
+<BaseLayout title={copy.title} description={copy.description} jsonLd={jsonLd}>
+  <section class="page-hero locale-page-hero"><div class="ambient-orb"></div><span>{copy.eyebrow}</span><h1>{copy.heading}</h1><p>{copy.intro}</p></section>
+  <section class="section locale-blog"><div class="locale-article-cards">{articleOrder.map((key,index)=><a href={`/${localeSlug}/blog/musebox-ai-vs-${key}/`}><span>{String(index+1).padStart(2,"0")} / {brandNames[key]}</span><h2>{localizedComparisons[localeSlug][key].title}</h2><p>{localizedComparisons[localeSlug][key].description}</p><strong>{copy.read} ↗</strong></a>)}</div></section>
+</BaseLayout>

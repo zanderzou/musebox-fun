@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { localeList, type LocaleSlug } from "../../../data/localized-musebox";
+import { blogCopy } from "../../../data/localized-blog";
+import { localizedComparisons, type ComparisonKey } from "../../../data/localized-articles";
+import { articleOrder } from "../../../data/locale-routes";
+import { site } from "../../../data/site";
+import { localizedSourceName } from "../../../data/localized-ui-extras";
+export function getStaticPaths(){return localeList.flatMap((entry)=>articleOrder.map((key)=>({params:{locale:entry.slug,slug:`musebox-ai-vs-${key}`},props:{localeSlug:entry.slug,key}})));}
+const localeSlug=Astro.props.localeSlug as LocaleSlug;
+const key=Astro.props.key as ComparisonKey;
+const copy=localizedComparisons[localeSlug][key];
+const lang=localeList.find((entry)=>entry.slug===localeSlug)!.code;
+const labels:Record<LocaleSlug,{decision:string;sources:string;back:string}>={
+  ja:{decision:"選び方",sources:"確認した公式資料",back:"比較記事一覧"},ko:{decision:"선택 기준",sources:"확인한 공식 자료",back:"비교 글 목록"},"zh-hant":{decision:"怎麼選",sources:"參考的官方資料",back:"比較文章列表"},es:{decision:"Para decidir",sources:"Fuentes oficiales consultadas",back:"Todas las comparativas"},"pt-br":{decision:"Como escolher",sources:"Fontes oficiais consultadas",back:"Todas as comparações"},ru:{decision:"Как выбрать",sources:"Официальные источники",back:"Все сравнения"},de:{decision:"Die Entscheidung",sources:"Offizielle Quellen",back:"Alle Vergleiche"},fr:{decision:"Pour choisir",sources:"Sources officielles consultées",back:"Tous les comparatifs"},ar:{decision:"كيف تختار",sources:"المصادر الرسمية",back:"جميع المقارنات"},
+};
+const articleUrl=`${site.url}/${localeSlug}/blog/musebox-ai-vs-${key}/`;
+const jsonLd={"@context":"https://schema.org","@type":"Article",headline:copy.title,description:copy.description,url:articleUrl,mainEntityOfPage:articleUrl,inLanguage:lang,author:{"@type":"Organization",name:site.author,url:site.url},publisher:{"@type":"Organization",name:site.name,url:site.url},citation:copy.sources.map((source)=>source.url)};
+---
+<BaseLayout title={copy.title} description={copy.description} type="article" jsonLd={jsonLd}>
+  <article class="locale-article"><header class="la-hero"><span class="lh-kicker">Musebox / {blogCopy[localeSlug].eyebrow}</span><h1>{copy.title}</h1><p class="la-intro">{copy.intro}</p></header><div class="la-content"><div class="la-verdict"><h2>{labels[localeSlug].decision}</h2><p>{copy.verdict}</p></div>{copy.sections.map(([heading,body])=><section><h2>{heading}</h2><p>{body}</p></section>)}</div><div class="la-sources"><h2>{labels[localeSlug].sources}</h2><ul>{copy.sources.map((source)=><li><a href={source.url} target="_blank" rel="noopener noreferrer">{localizedSourceName(localeSlug,source.url,source.name)} ↗</a></li>)}</ul></div><a class="la-back" href={`/${localeSlug}/blog/`}>← {labels[localeSlug].back}</a></article>
+</BaseLayout>

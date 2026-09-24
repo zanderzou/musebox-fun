@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import heroImage from "../../assets/musebox-user-beach-selfie.jpg";
+import secondaryImage from "../../assets/musebox-user-studio-selfie.png";
+import { homeCopy, localeList, type LocaleSlug } from "../../data/localized-musebox";
+import { articleOrder, brandNames } from "../../data/locale-routes";
+import { localizedComparisons } from "../../data/localized-articles";
+import { blogCopy } from "../../data/localized-blog";
+import { a11yCopy, faqHeading } from "../../data/localized-ui-extras";
+import { site } from "../../data/site";
+
+export function getStaticPaths(){return localeList.map((entry)=>({params:{locale:entry.slug},props:{localeSlug:entry.slug}}));}
+const localeSlug=Astro.props.localeSlug as LocaleSlug;
+const copy=homeCopy[localeSlug];
+const blog=blogCopy[localeSlug];
+const root=`/${localeSlug}/`;
+const pageUrl=`${site.url}${root}`;
+const jsonLd={"@context":"https://schema.org","@graph":[
+  {"@type":"WebSite","@id":`${site.url}/#website`,name:"Musebox",url:site.url,inLanguage:copy.code},
+  {"@type":"WebPage","@id":`${pageUrl}#webpage`,name:"Musebox",url:pageUrl,description:copy.description,inLanguage:copy.code,isPartOf:{"@id":`${site.url}/#website`}},
+  {"@type":"FAQPage",mainEntity:copy.faqs.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))},
+]};
+---
+<BaseLayout title={copy.title} description={copy.description} jsonLd={jsonLd}>
+  <section class="hero locale-hero">
+    <Image class="hero-image" src={heroImage} alt={a11yCopy[localeSlug].heroAlt} widths={[640,960,1280,1536]} sizes="100vw" loading="eager" fetchpriority="high" quality={84}/>
+    <div class="hero-glow"></div>
+    <div class="hero-copy"><div class="kicker">{copy.hero.eyebrow}</div><h1>Musebox</h1><p class="hero-subtitle">{copy.hero.subhead}</p><p>{copy.hero.lead}</p><div class="hero-actions"><a class="button primary" href="#workflow">{copy.hero.cta} <Icon name="arrow"/></a><a class="button ghost" href={`${root}blog/`}>{copy.ui.articles}</a></div><div class="hero-trust"><span><Icon name="spark"/> {copy.ui.workflow}</span><span><Icon name="lock"/> {copy.ui.safety}</span></div></div>
+  </section>
+  <section class="section locale-intent"><div class="section-label">01 / Musebox</div><h2>{copy.intent.heading}</h2>{copy.intent.paragraphs.map((paragraph)=><p>{paragraph}</p>)}</section>
+  <section class="section" id="workflow"><div class="section-head"><div><div class="section-label">02 / {copy.ui.workflow}</div><h2>{copy.method.heading}</h2></div><p>{copy.method.intro}</p></div><div class="locale-step-grid">{copy.method.steps.map(([heading,body],index)=><article><span>{String(index+1).padStart(2,"0")}</span><h3>{heading}</h3><p>{body}</p></article>)}</div></section>
+  <section class="section locale-compare" id="compare"><div class="section-head"><div><div class="section-label">03 / {copy.ui.compare}</div><h2>{copy.comparisons.heading}</h2></div><p>{copy.comparisons.intro}</p></div><div class="locale-product-list">{copy.comparisons.rows.map(([heading,body],index)=><a href={`${root}blog/musebox-ai-vs-${articleOrder[index]}/`}><b>{String(index+1).padStart(2,"0")}</b><div><h3>{heading}</h3><p>{body}</p></div><Icon name="arrow"/></a>)}</div></section>
+  <section class="section locale-notes"><div class="section-label">04 / Musebox</div><h2>{copy.notes.heading}</h2><figure class="locale-inline-image"><Image src={secondaryImage} alt={a11yCopy[localeSlug].studioAlt} widths={[640,960,1280]} sizes="(max-width: 640px) 100vw, 1000px" loading="lazy" quality={84}/></figure><div class="locale-note-grid">{copy.notes.entries.map(([heading,body])=><article><h3>{heading}</h3><p>{body}</p></article>)}</div></section>
+  <section class="section locale-safety" id="safety"><div class="section-label">05 / {copy.ui.safety}</div><h2>{copy.safety.heading}</h2>{copy.safety.paragraphs.map((paragraph)=><p>{paragraph}</p>)}<a class="button ghost" href={site.officialUrl} target="_blank" rel="noopener noreferrer">{copy.ui.official} <Icon name="arrow"/></a></section>
+  <section class="section locale-blog"><div class="section-head"><div><div class="section-label">06 / {copy.ui.articles}</div><h2>{blog.heading}</h2></div><p>{blog.intro}</p></div><div class="locale-article-cards">{articleOrder.map((key,index)=><a href={`${root}blog/musebox-ai-vs-${key}/`}><span>{String(index+1).padStart(2,"0")} / {brandNames[key]}</span><h3>{localizedComparisons[localeSlug][key].title}</h3><p>{localizedComparisons[localeSlug][key].description}</p><strong>{copy.ui.read} ↗</strong></a>)}</div></section>
+  <section class="section locale-faq"><div class="section-label">07 / Musebox</div><h2>{faqHeading[localeSlug]}</h2><div class="faq-list">{copy.faqs.map(([question,answer])=><details><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section>
+</BaseLayout>

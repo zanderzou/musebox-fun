@@ -18,10 +18,19 @@ const articles=readdirSync(blog).filter(f=>f.endsWith('.md')).sort().map(f=>{
 const label=s=>s.replace(/[\[\]]/g,'');
 const links=[['Homepage','/','Overview and practical decision guidance.'],['Blog and comparisons','/blog/','Browse the editorial article collection.']];
 const optional=[['About','about'],['Editorial policy','editorial-policy'],['Contact','contact'],['Privacy policy','privacy'],['Terms','terms']].filter(([,slug])=>existsSync(path.join(pages,slug+'.astro'))||existsSync(path.join(pages,slug,'index.astro')));
+const locales=[['ja','日本語'],['ko','한국어'],['zh-hant','繁體中文'],['es','Español'],['pt-br','Português do Brasil'],['ru','Русский'],['de','Deutsch'],['fr','Français'],['ar','العربية']];
+const comparisonNames={"musebox-ai-vs-playbox-ai":"Musebox / Playbox AI","musebox-ai-vs-runway":"Musebox / Runway","musebox-ai-vs-kling-ai":"Musebox / Kling AI","musebox-ai-vs-pika":"Musebox / Pika","musebox-ai-vs-luma-dream-machine":"Musebox / Luma"};
+const localizedLinks=locales.flatMap(([slug,localeLabel])=>[
+  `- [${localeLabel}: Musebox](${origin}/${slug}/)`,
+  `- [${localeLabel}: comparisons](${origin}/${slug}/blog/)`,
+  ...articles.map(article=>`- [${localeLabel}: ${comparisonNames[article.slug]??label(article.title)}](${origin}/${slug}/blog/${article.slug}/)`),
+  ...optional.map(([title,page])=>`- [${localeLabel}: ${title}](${origin}/${slug}/${page}/)`),
+]);
 const text=[`# ${name}`,'',`> ${description}`,'',`Canonical publication: ${origin}/`,'','This is an independent editorial publication, not the official provider. Articles distinguish published provider information from suggested evaluation methods. Examples and proposed tests are not measured benchmark results. Check dated sources and live provider terms for changing features and prices.','',
  '## Main pages','',...links.map(([title,route,note])=>`- [${title}](${origin}${route}): ${note}`),'',
  '## Comparisons','',...articles.map(a=>`- [${label(a.title)}](${origin}/blog/${a.slug}/)`),'',
  '## Publication information','',...optional.map(([title,slug])=>`- [${title}](${origin}/${slug}/)`),'',
+ '## Complete localized editions','',...localizedLinks,'',
  '## Optional','',`- [XML sitemap](${origin}/sitemap-index.xml): Canonical page inventory.`,`- [RSS feed](${origin}/rss.xml): Published article updates.`,`- [Robots policy](${origin}/robots.txt): Crawler access directives.`,''].join('\n');
 const destination=path.join(root,'public/llms.txt');
 if(process.argv.includes('--check')){

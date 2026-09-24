@@ -1,11 +1,21 @@
 ---
 import Icon from "./Icon.astro";
 import { site } from "../data/site";
+import { homeCopy, localeList } from "../data/localized-musebox";
+import { a11yCopy } from "../data/localized-ui-extras";
+import { isTranslatedRoute, localePath, type SiteLocale } from "../data/locale-routes";
+interface Props {locale:SiteLocale}
+const {locale}=Astro.props;
+const root=locale==="en"?"/":`/${locale}/`;
+const ui=locale==="en"?{workflow:"Workflow",compare:"Compare",safety:"Safety",articles:"Blog",official:"Visit official site",language:"Language"}:homeCopy[locale].ui;
+const switchPath=isTranslatedRoute(Astro.url.pathname)?Astro.url.pathname:"/";
+const a11y=locale==="en"?{home:"Musebox home",nav:"Main navigation",menu:"Open menu"}:a11yCopy[locale];
 ---
 <header class="site-header">
-  <a class="brand" href="/" aria-label="Musebox home"><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a>
-  <nav aria-label="Main navigation"><a href="/#workflow">Workflow</a><a href="/#compare">Compare</a><a href="/#safety">Safety</a><a href="/blog/">Blog</a></nav>
-  <a class="official-link" href={site.officialUrl} rel="noopener" target="_blank">Visit official site <Icon name="arrow" /></a>
-  <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button><Icon name="menu" /></button>
-  <div class="mobile-nav" data-mobile-nav><a href="/#workflow">Workflow</a><a href="/#compare">Compare</a><a href="/#safety">Safety</a><a href="/blog/">Blog</a><a href={site.officialUrl} rel="noopener" target="_blank">Official site</a></div>
+  <a class="brand" href={root} aria-label={a11y.home}><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a>
+  <nav aria-label={a11y.nav}><a href={`${root}#workflow`}>{ui.workflow}</a><a href={`${root}#compare`}>{ui.compare}</a><a href={`${root}#safety`}>{ui.safety}</a><a href={`${root}blog/`}>{ui.articles}</a></nav>
+  <details class="language-switch"><summary>{ui.language}</summary><div class="language-options"><a href={localePath("en",switchPath)} aria-current={locale==="en"?"page":undefined} lang="en">English</a>{localeList.map((entry)=><a href={localePath(entry.slug,switchPath)} aria-current={locale===entry.slug?"page":undefined} lang={entry.code} dir={entry.slug==="ar"?"rtl":"ltr"}>{entry.label}</a>)}</div></details>
+  <a class="official-link" href={site.officialUrl} rel="noopener noreferrer" target="_blank">{ui.official} <Icon name="arrow" /></a>
+  <button class="menu-button" type="button" aria-label={a11y.menu} aria-expanded="false" data-menu-button><Icon name="menu" /></button>
+  <div class="mobile-nav" data-mobile-nav><a href={`${root}#workflow`}>{ui.workflow}</a><a href={`${root}#compare`}>{ui.compare}</a><a href={`${root}#safety`}>{ui.safety}</a><a href={`${root}blog/`}>{ui.articles}</a><a href={site.officialUrl} rel="noopener noreferrer" target="_blank">{ui.official}</a></div>
 </header>

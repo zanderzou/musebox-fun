@@ -62,6 +62,7 @@ footer{background:#01040b}.page-hero,.info-hero{background:radial-gradient(circl
 /* Preserve the full portrait in the hero instead of using a wide crop. */
 .hero>.hero-image{object-fit:contain!important;object-position:right center!important}
 @media(max-width:640px){.hero>.hero-image{object-fit:contain!important;object-position:center top!important}}
+.hero .hero-subtitle{margin:-8px 0 12px;color:#b8d0ff;font-family:"Space Grotesk",sans-serif;font-size:clamp(1.45rem,2.5vw,2.2rem);font-weight:700;line-height:1.2;letter-spacing:-.03em}
 /* Compact reading rhythm across desktop and narrow screens. */
 .hero h1{font-size:clamp(3.1rem,5.65vw,5.7rem)!important;line-height:1.04!important;letter-spacing:-.045em!important;overflow-wrap:break-word}
 .section{padding-top:clamp(3.5rem,5.5vw,5rem)!important;padding-bottom:clamp(3.5rem,5.5vw,5rem)!important}
