@@ -7,6 +7,7 @@ const out=path.join(root,"dist","client");
 const origin="https://musebox.fun";
 const locales={ja:"ja",ko:"ko","zh-hant":"zh-Hant",es:"es","pt-br":"pt-BR",ru:"ru",de:"de",fr:"fr",ar:"ar"};
 const articleKeys=["playbox-ai","runway","kling-ai","pika","luma-dream-machine"];
+const expectedSourceHost={"playbox-ai":"playbox.website",runway:"runwayml.com","kling-ai":"kling.ai",pika:"pika.art","luma-dream-machine":"lumalabs.ai"};
 const pages=new Set(["/","/blog/","/about/","/contact/","/editorial-policy/","/privacy/","/terms/",...articleKeys.map(key=>`/blog/musebox-ai-vs-${key}/`)]);
 const failures=[];
 const check=(ok,message)=>{if(!ok)failures.push(message);};
@@ -48,8 +49,27 @@ for(const file of files){
     check(found.size===expected.size,`${route}: alternate count ${found.size}`);
     for(const [code,href] of expected)check(found.get(code)===href,`${route}: ${code} alternate`);
   }
+  if(lang==="en"){
+    const sponsor=[...html.matchAll(/<a\b[^>]*href="https:\/\/www\.playbox\.com\/\?ref=zanderzou"[^>]*>/gi)];
+    check(sponsor.length===1&&/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(sponsor[0]?.[0]??"")&&html.includes("Sponsored link:"),`${route}: sponsor link must be singular and clearly labeled`);
+  }
 }
 check(files.length===121,`expected 121 HTML pages, found ${files.length}`);
+for(const key of articleKeys){
+  const route=`/blog/musebox-ai-vs-${key}/`;
+  const article=path.join(out,"blog",`musebox-ai-vs-${key}`,"index.html");
+  if(!existsSync(article))continue;
+  const html=readFileSync(article,"utf8");
+  const sourceSection=html.match(/<section\s+class="sources"\s+id="sources">([\s\S]*?)<\/section>/i)?.[1]??"";
+  const hrefs=[...sourceSection.matchAll(/<a\b[^>]*href="([^"]+)"/gi)].map(([,href])=>href);
+  check(hrefs.length>=2,`${route}: expected at least two source links`);
+  check(hrefs.every(href=>href.startsWith("https://")&&!href.includes("ref=zanderzou")),`${route}: source redirected or non-HTTPS`);
+  check(hrefs.some(href=>new URL(href).host==="musebox.ai"),`${route}: missing direct Musebox source`);
+  check(hrefs.some(href=>new URL(href).host===expectedSourceHost[key]||new URL(href).host.endsWith(`.${expectedSourceHost[key]}`)),`${route}: missing direct competitor source`);
+  check(!/DIRECT ANSWER|Direct answer/i.test(html),`${route}: obsolete direct-answer block remains`);
+}
+const privacy=readFileSync(path.join(out,"privacy","index.html"),"utf8");
+check(/href="https:\/\/policies\.google\.com\/privacy"/.test(privacy),"Privacy: Google policy link must be direct");
 for(const name of ["robots.txt","sitemap-index.xml","rss.xml","llms.txt","8b4a1e639c2d47fdaf52484f05a1c927.txt"])check(existsSync(path.join(out,name)),`missing ${name}`);
 if(failures.length){console.error(`SEO audit failed:\n- ${failures.join("\n- ")}`);process.exit(1);}
 console.log(`SEO audit passed for ${files.length} HTML pages and 120 reciprocal language routes.`);
