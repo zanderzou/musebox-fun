@@ -1,14 +1,6 @@
 /** Draft editorial copy. Do not wire hreflang or publish until all nine locales and articles pass QA. */
 export const localeList = [
-  { code:"ja", slug:"ja", label:"日本語" },
-  { code:"ko", slug:"ko", label:"한국어" },
-  { code:"zh-Hant", slug:"zh-hant", label:"繁體中文" },
   { code:"es", slug:"es", label:"Español" },
-  { code:"pt-BR", slug:"pt-br", label:"Português (Brasil)" },
-  { code:"ru", slug:"ru", label:"Русский" },
-  { code:"de", slug:"de", label:"Deutsch" },
-  { code:"fr", slug:"fr", label:"Français" },
-  { code:"ar", slug:"ar", label:"العربية" },
 ] as const;
 export type LocaleSlug = typeof localeList[number]["slug"];
 export interface MuseboxHomeCopy {

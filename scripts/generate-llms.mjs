@@ -18,7 +18,7 @@ const articles=readdirSync(blog).filter(f=>f.endsWith('.md')).sort().map(f=>{
 const label=s=>s.replace(/[\[\]]/g,'');
 const links=[['Homepage','/','Overview and practical decision guidance.'],['Blog and comparisons','/blog/','Browse the editorial article collection.']];
 const optional=[['About','about'],['Editorial policy','editorial-policy'],['Contact','contact'],['Privacy policy','privacy'],['Terms','terms']].filter(([,slug])=>existsSync(path.join(pages,slug+'.astro'))||existsSync(path.join(pages,slug,'index.astro')));
-const locales=[['ja','日本語'],['ko','한국어'],['zh-hant','繁體中文'],['es','Español'],['pt-br','Português do Brasil'],['ru','Русский'],['de','Deutsch'],['fr','Français'],['ar','العربية']];
+const locales=[['es','Español']];
 const comparisonNames={"musebox-ai-vs-playbox-ai":"Musebox / Playbox AI","musebox-ai-vs-runway":"Musebox / Runway","musebox-ai-vs-kling-ai":"Musebox / Kling AI","musebox-ai-vs-pika":"Musebox / Pika","musebox-ai-vs-luma-dream-machine":"Musebox / Luma"};
 const localizedLinks=locales.flatMap(([slug,localeLabel])=>[
   `- [${localeLabel}: Musebox](${origin}/${slug}/)`,

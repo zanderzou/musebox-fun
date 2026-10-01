@@ -5,7 +5,7 @@ import {fileURLToPath} from "node:url";
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const out=path.join(root,"dist","client");
 const origin="https://musebox.fun";
-const locales={ja:"ja",ko:"ko","zh-hant":"zh-Hant",es:"es","pt-br":"pt-BR",ru:"ru",de:"de",fr:"fr",ar:"ar"};
+const locales={es:"es"};
 const articleKeys=["playbox-ai","runway","kling-ai","pika","luma-dream-machine"];
 const expectedSourceHost={"playbox-ai":"playbox.website",runway:"runwayml.com","kling-ai":"kling.ai",pika:"pika.art","luma-dream-machine":"lumalabs.ai"};
 const pages=new Set(["/","/blog/","/about/","/contact/","/editorial-policy/","/privacy/","/terms/",...articleKeys.map(key=>`/blog/musebox-ai-vs-${key}/`)]);
@@ -54,7 +54,7 @@ for(const file of files){
     check(sponsor.length===1&&/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(sponsor[0]?.[0]??"")&&html.includes("Sponsored link:"),`${route}: sponsor link must be singular and clearly labeled`);
   }
 }
-check(files.length===121,`expected 121 HTML pages, found ${files.length}`);
+check(files.length===25,`expected 25 HTML pages, found ${files.length}`);
 for(const key of articleKeys){
   const route=`/blog/musebox-ai-vs-${key}/`;
   const article=path.join(out,"blog",`musebox-ai-vs-${key}`,"index.html");
@@ -72,4 +72,4 @@ const privacy=readFileSync(path.join(out,"privacy","index.html"),"utf8");
 check(/href="https:\/\/policies\.google\.com\/privacy"/.test(privacy),"Privacy: Google policy link must be direct");
 for(const name of ["robots.txt","sitemap-index.xml","rss.xml","llms.txt","8b4a1e639c2d47fdaf52484f05a1c927.txt"])check(existsSync(path.join(out,name)),`missing ${name}`);
 if(failures.length){console.error(`SEO audit failed:\n- ${failures.join("\n- ")}`);process.exit(1);}
-console.log(`SEO audit passed for ${files.length} HTML pages and 120 reciprocal language routes.`);
+console.log(`SEO audit passed for ${files.length} HTML pages and 24 reciprocal language routes.`);
