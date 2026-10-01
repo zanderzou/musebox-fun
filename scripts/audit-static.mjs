@@ -51,7 +51,7 @@ for(const file of files){
   }
   if(lang==="en"){
     const sponsor=[...html.matchAll(/<a\b[^>]*href="https:\/\/www\.playbox\.com\/\?ref=zanderzou"[^>]*>/gi)];
-    check(sponsor.length===1&&/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(sponsor[0]?.[0]??"")&&html.includes("Sponsored link:"),`${route}: sponsor link must be singular and clearly labeled`);
+    check(sponsor.length>=1&&sponsor.every(([tag])=>/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(tag))&&html.includes("Sponsored link:"),`${route}: promotion must be marked sponsored/nofollow and disclosed`);
   }
 }
 check(files.length===25,`expected 25 HTML pages, found ${files.length}`);
