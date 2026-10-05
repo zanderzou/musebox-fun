@@ -11,6 +11,18 @@ This is an independent editorial publication, not the official provider. Article
 - [Homepage](https://musebox.fun/): Overview and practical decision guidance.
 - [Blog and comparisons](https://musebox.fun/blog/): Browse the editorial article collection.
 
+## Language editions
+
+- [Japanese](https://musebox.fun/ja/): Localized homepage, publication pages, and five comparison articles.
+- [Korean](https://musebox.fun/ko/): Localized homepage, publication pages, and five comparison articles.
+- [Traditional Chinese](https://musebox.fun/zh-hant/): Localized homepage, publication pages, and five comparison articles.
+- [Spanish](https://musebox.fun/es/): Localized homepage, publication pages, and five comparison articles.
+- [Brazilian Portuguese](https://musebox.fun/pt-br/): Localized homepage, publication pages, and five comparison articles.
+- [Russian](https://musebox.fun/ru/): Localized homepage, publication pages, and five comparison articles.
+- [German](https://musebox.fun/de/): Localized homepage, publication pages, and five comparison articles.
+- [French](https://musebox.fun/fr/): Localized homepage, publication pages, and five comparison articles.
+- [Arabic](https://musebox.fun/ar/): Localized homepage, publication pages, and five comparison articles.
+
 ## Comparisons
 
 - [Musebox AI vs Kling AI: Features, Strengths, Weaknesses](https://musebox.fun/blog/musebox-ai-vs-kling-ai/)

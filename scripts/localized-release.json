@@ -1,0 +1,29 @@
+{
+  "domain": "musebox.fun",
+  "keyword": "Musebox",
+  "languages": [
+    "ja",
+    "ko",
+    "zh-hant",
+    "es",
+    "pt-br",
+    "ru",
+    "de",
+    "fr",
+    "ar"
+  ],
+  "addLanguageFooter": false,
+  "metadataOverrides": {
+    "/zh-hant/contact/": "向 musebox.fun 回報文章錯誤、圖片權利或無障礙問題的方式，說明應提供的頁面與證據，並區分本站編輯及產品客服。",
+    "/zh-hant/editorial-policy/": "Musebox 比較文章的第一手來源、分析方法與更正方針。本文不把展示作品當成獨立實測，重要功能以現行官方資料核對。",
+    "/zh-hant/terms/": "musebox.fun 的資訊用途、內容權利及外部服務界線。閱讀比較時請另行核對所選工具的現行條件與素材使用權利。",
+    "/es/": "Musebox: evalúa imagen a vídeo con IA, movimiento, costes y privacidad. Compara cinco alternativas según tu proyecto y consulta sus fuentes oficiales.",
+    "/pt-br/": "Musebox: avalie imagem para vídeo com IA, movimento, custos e privacidade. Compare cinco alternativas conforme o projeto e confira as fontes oficiais.",
+    "/ru/": "Musebox: оцените видео из изображения, движение, расходы и приватность. Сравните пять альтернатив по цели проекта и проверьте первоисточники.",
+    "/fr/": "Musebox : évaluer image vers vidéo IA, mouvement, coûts et confidentialité. Comparer cinq alternatives selon le projet et consulter les sources officielles."
+  },
+  "authorizedAt": "2026-10-05",
+  "exclude": [
+    "spicybox.fun"
+  ]
+}
