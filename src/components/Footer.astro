@@ -24,7 +24,7 @@ const labels=locale==="en"?{explore:"Explore",information:"Information",latest:"
 ---
 <footer>
   <div class="footer-grid">
-    <div><a class="brand" href={root}><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a><p>{labels.summary}</p>{locale==="en" && <p>Sponsored link: <a href="https://www.playbox.com/?ref=zanderzou" target="_blank" rel="sponsored nofollow noopener noreferrer">Playbox</a>. Our comparisons remain independent.</p>}</div>
+    <div><a class="brand" href={root}><span class="brand-icon"><Icon name="spark" /></span><strong>MUSE<span>BOX</span></strong></a><p>{labels.summary}</p>{locale==="en" && <p>Sponsored link: <a href="https://spicy-box.com/?utm_ref=c546b6e92223b411" target="_blank" rel="sponsored nofollow noopener noreferrer">Playbox</a>. Our comparisons remain independent.</p>}</div>
     <div><h3>{labels.explore}</h3><a href={`${root}#workflow`}>{ui.workflow}</a><a href={`${root}#compare`}>{ui.compare}</a><a href={`${root}#safety`}>{ui.safety}</a><a href={site.officialUrl} rel="noopener noreferrer" target="_blank">{ui.official}</a></div>
     <div><h3>{labels.latest}</h3>{locale==="en"?posts.slice(0,3).map((post)=><a href={`/blog/${post.id}/`}>{post.data.title}</a>):articleOrder.slice(0,3).map((key)=><a href={`${root}blog/musebox-ai-vs-${key}/`}>{localizedComparisons[locale][key].title}</a>)}</div>
     <div><h3>{labels.information}</h3><a href={`${root}about/`}>{ui.about}</a><a href={`${root}privacy/`}>{ui.privacy}</a><a href={`${root}terms/`}>{labels.terms}</a><a href={`${root}editorial-policy/`}>{labels.editorial}</a><a href={`${root}contact/`}>{labels.contact}</a></div>
