@@ -5,10 +5,13 @@ import {fileURLToPath} from "node:url";
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const out=path.join(root,"dist","client");
 const origin="https://musebox.fun";
-const locales={es:"es"};
+const locales={es:"es",ja:"ja",ko:"ko","zh-hant":"zh-Hant","pt-br":"pt-BR",ru:"ru",de:"de",fr:"fr",ar:"ar"};
 const articleKeys=["playbox-ai","runway","kling-ai","pika","luma-dream-machine"];
 const expectedSourceHost={"playbox-ai":"playbox.website",runway:"runwayml.com","kling-ai":"kling.ai",pika:"pika.art","luma-dream-machine":"lumalabs.ai"};
 const pages=new Set(["/","/blog/","/about/","/contact/","/editorial-policy/","/privacy/","/terms/",...articleKeys.map(key=>`/blog/musebox-ai-vs-${key}/`)]);
+const scheduled=JSON.parse(readFileSync(path.join(root,'src/data/editorialSchedule.json'),'utf8'));
+const englishOnly=new Set(scheduled.articles.filter(a=>a.approved&&existsSync(path.join(root,'src/content/blog',a.slug+'.md'))).map(a=>'/blog/'+a.slug+'/'));
+for(const route of englishOnly)pages.add(route);
 const failures=[];
 const check=(ok,message)=>{if(!ok)failures.push(message);};
 const files=[];
@@ -17,7 +20,7 @@ function routeFromFile(file){const rel=path.relative(out,file).replaceAll("\\","
 function localFile(href){const route=href.split("#")[0].split("?")[0];if(!route.startsWith("/"))return null;if(route==="/")return path.join(out,"index.html");return path.extname(route)?path.join(out,route):path.join(out,route,"index.html");}
 function extract(html,re){return html.match(re)?.[1]??"";}
 function englishPath(route){const first=route.split("/")[1];return locales[first]?route.slice(first.length+1)||"/":route;}
-function expectedAlternates(route){const en=englishPath(route);return new Map([["en",`${origin}${en}`],...Object.entries(locales).map(([slug,code])=>[code,`${origin}/${slug}${en}`]),["x-default",`${origin}${en}`]]);}
+function expectedAlternates(route){const en=englishPath(route);return new Map([["en",`${origin}${en}`],...(englishOnly.has(en)?[]:Object.entries(locales).map(([slug,code])=>[code,`${origin}/${slug}${en}`])),["x-default",`${origin}${en}`]]);}
 
 walk(out);
 const canonicals=new Map();
@@ -54,7 +57,7 @@ for(const file of files){
     check(sponsor.length>=1&&sponsor.every(([tag])=>/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(tag))&&html.includes("Sponsored link:"),`${route}: promotion must be marked sponsored/nofollow and disclosed`);
   }
 }
-check(files.length===25,`expected 25 HTML pages, found ${files.length}`);
+check(files.length===121+englishOnly.size,`expected ${121+englishOnly.size} HTML pages, found ${files.length}`);
 for(const key of articleKeys){
   const route=`/blog/musebox-ai-vs-${key}/`;
   const article=path.join(out,"blog",`musebox-ai-vs-${key}`,"index.html");
@@ -72,4 +75,4 @@ const privacy=readFileSync(path.join(out,"privacy","index.html"),"utf8");
 check(/href="https:\/\/policies\.google\.com\/privacy"/.test(privacy),"Privacy: Google policy link must be direct");
 for(const name of ["robots.txt","sitemap-index.xml","rss.xml","llms.txt","8b4a1e639c2d47fdaf52484f05a1c927.txt"])check(existsSync(path.join(out,name)),`missing ${name}`);
 if(failures.length){console.error(`SEO audit failed:\n- ${failures.join("\n- ")}`);process.exit(1);}
-console.log(`SEO audit passed for ${files.length} HTML pages and 24 reciprocal language routes.`);
+console.log(`SEO audit passed for ${files.length} HTML pages, 120 existing language routes and ${englishOnly.size} new English routes.`);

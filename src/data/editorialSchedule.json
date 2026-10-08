@@ -1,0 +1,90 @@
+{
+  "domain": "musebox.fun",
+  "timeZone": "Asia/Shanghai",
+  "policy": "New articles are English-only. Quality review is required before a date can enable a release. Existing publications are preserved.",
+  "articles": [
+    {
+      "order": 1,
+      "slug": "musebox-vs-firefly-brand-loop",
+      "title": "Musebox vs Adobe Firefly: A Brand Background Loop",
+      "opponent": "Adobe Firefly",
+      "readerQuestion": "a non-personal brand background and the model-specific use record",
+      "releaseAt": "2026-10-08T05:11:15.515Z",
+      "language": "en",
+      "approved": true,
+      "status": "editorially-reviewed",
+      "sourcesCheckedAt": "2026-10-08",
+      "reviewedSha256": "e1c11488b1cb66ab96d7955db76df9780fbc7c86b2b26becec3ae3276e9f93c2",
+      "wordCount": 531,
+      "editorialIntent": "Plan a non-personal background loop with separate creative and delivery acceptance checks.",
+      "sources": [
+        [
+          "Musebox Official Website",
+          "https://musebox.ai/"
+        ],
+        [
+          "Adobe Firefly Image-to-Video Guide",
+          "https://helpx.adobe.com/firefly/web/work-with-audio-and-video/work-with-video/generate-videos-using-images.html"
+        ],
+        [
+          "Adobe Content Credentials Overview",
+          "https://helpx.adobe.com/firefly/web/get-started/learn-the-basics/content-credentials-overview.html"
+        ]
+      ]
+    },
+    {
+      "order": 2,
+      "slug": "musebox-vs-capcut-captions-and-cuts",
+      "title": "Musebox vs CapCut: Generation, Captions and Cuts",
+      "opponent": "CapCut",
+      "readerQuestion": "generating footage versus editing captions and timing",
+      "releaseAt": "2026-10-15T17:16:09.375Z",
+      "language": "en",
+      "approved": true,
+      "status": "editorially-reviewed",
+      "sourcesCheckedAt": "2026-10-08",
+      "reviewedSha256": "449026b38d492e6b3787eb1374f643f7a4ed5a852470446100a2b4db9dad501d",
+      "wordCount": 521,
+      "editorialIntent": "Separate footage creation from English caption verification and final assembly.",
+      "sources": [
+        [
+          "Musebox Official Website",
+          "https://musebox.ai/"
+        ],
+        [
+          "CapCut Subtitle Workflow",
+          "https://www.capcut.com/tools/add-subtitles-to-video"
+        ]
+      ]
+    },
+    {
+      "order": 3,
+      "slug": "musebox-vs-google-flow-scene-assets",
+      "title": "Musebox vs Google Flow: Reusable Scene Assets",
+      "opponent": "Google Flow",
+      "readerQuestion": "a discovery-led video tool versus a reusable non-personal scene workflow",
+      "releaseAt": "2026-10-22T20:09:01.013Z",
+      "language": "en",
+      "approved": true,
+      "status": "editorially-reviewed",
+      "sourcesCheckedAt": "2026-10-08",
+      "reviewedSha256": "94846d861f40524423a0f84e25df5bc2f3bf11fd3960df7241e522a9218a645b",
+      "wordCount": 550,
+      "editorialIntent": "Organize an original non-personal scene across shots without claiming guaranteed visual consistency.",
+      "sources": [
+        [
+          "Musebox Official Website",
+          "https://musebox.ai/"
+        ],
+        [
+          "Google Flow Video and Reference Guide",
+          "https://support.google.com/flow/answer/16353334?hl=en"
+        ],
+        [
+          "Google Flow Projects and Assets",
+          "https://support.google.com/flow/answer/16935308?hl=en"
+        ]
+      ]
+    }
+  ]
+}
