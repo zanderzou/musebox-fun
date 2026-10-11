@@ -9,3 +9,6 @@
 - Never add video generation, login, payment, media upload, or collection of private project files.
 - Coverage must reject non-consensual intimate media, impersonation, exploitation, and any use involving minors.
 - Keep `.openai/hosting.json`, `worker/index.js`, `scripts/prepare-sites-build.mjs`, and `tests/sites-worker.test.mjs` intact for packaging tests.
+
+- Multilingual scope (October 11, 2026): publish native language editions for the homepage and blog only. About, Contact, Editorial Policy, Privacy and Terms remain in English; retired translated information URLs redirect to their English counterparts.
+- Translated headings and CTA labels must fit desktop, tablet and mobile layouts. Keep one primary homepage CTA, preserve its configured destination, separate copy from portrait artwork, and check Arabic RTL and long German words.
