@@ -78,3 +78,13 @@ footer{background:#01040b}.page-hero,.info-hero{background:radial-gradient(circl
 .section-head>p{max-width:none;width:100%;margin:8px 0 0;line-height:1.5}
 @media(max-width:600px){.section{padding-top:24px!important;padding-bottom:24px!important}.section-head{margin-bottom:18px!important}.section-head h2{font-size:clamp(1.7rem,7vw,2.15rem)!important;overflow-wrap:break-word}}
 .section-head h2 span{display:inline}
+/* Mobile first-fold action: portrait above, one button before the longer introduction. */
+@media(max-width:640px){
+  .hero{align-items:flex-start;min-height:760px;padding-bottom:28px}
+  .hero-copy{display:flex;flex-direction:column;margin-block-start:clamp(255px,36vh,305px)}
+  .hero-copy>p:not(.hero-subtitle){order:4;margin-top:12px}
+  .hero-actions{order:3;margin-top:16px}
+  .hero-trust{order:5}
+  .hero h1{margin-block:12px 13px}
+  .hero-subtitle{margin:0 0 8px}
+}
