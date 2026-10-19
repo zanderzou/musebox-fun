@@ -1,0 +1,12 @@
+{
+  "domain": "musebox.fun",
+  "label": "musebox.fun",
+  "origin": "https://musebox.fun",
+  "slugs": [
+    "musebox-ai-vs-io-account-receipt-identity",
+    "musebox-video-download-metadata-playback-check"
+  ],
+  "articlePrefix": "/blog/",
+  "homePath": "/",
+  "blogPath": "/blog/"
+}
