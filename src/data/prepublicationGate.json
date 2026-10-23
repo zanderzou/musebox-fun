@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "domain": "musebox.fun",
+  "grandfathered": [
+    {
+      "order": 1,
+      "slug": "musebox-vs-firefly-brand-loop",
+      "releaseAt": "2026-10-08T05:11:15.515Z",
+      "status": 200,
+      "liveVerifiedAt": "2026-10-23T05:20:08.778Z",
+      "canonical": "https://musebox.fun/blog/musebox-vs-firefly-brand-loop/",
+      "language": "en",
+      "titleMatches": true,
+      "discoveryVerified": true,
+      "sourceCommit": "85b055c6e19d0fe950c584b84bf9c5264ca447e3",
+      "deploymentId": "42350e0b-cf93-4dab-9ba7-bc44f1903582",
+      "responseSha256": "aa774bcbbe64fafd6a0ce0ecd4a5d442474359afc22d7d0fb3a1db5e0497b75d"
+    },
+    {
+      "order": 2,
+      "slug": "musebox-vs-capcut-captions-and-cuts",
+      "releaseAt": "2026-10-15T17:16:09.375Z",
+      "status": 200,
+      "liveVerifiedAt": "2026-10-23T05:20:08.778Z",
+      "canonical": "https://musebox.fun/blog/musebox-vs-capcut-captions-and-cuts/",
+      "language": "en",
+      "titleMatches": true,
+      "discoveryVerified": true,
+      "sourceCommit": "85b055c6e19d0fe950c584b84bf9c5264ca447e3",
+      "deploymentId": "42350e0b-cf93-4dab-9ba7-bc44f1903582",
+      "responseSha256": "c817f930cd8a38f15e670c2cf588801276c195d36263014eb28c7f45912acad3"
+    },
+    {
+      "order": 3,
+      "slug": "musebox-vs-google-flow-scene-assets",
+      "releaseAt": "2026-10-22T20:09:01.013Z",
+      "status": 200,
+      "liveVerifiedAt": "2026-10-23T05:20:08.778Z",
+      "canonical": "https://musebox.fun/blog/musebox-vs-google-flow-scene-assets/",
+      "language": "en",
+      "titleMatches": true,
+      "discoveryVerified": true,
+      "sourceCommit": "85b055c6e19d0fe950c584b84bf9c5264ca447e3",
+      "deploymentId": "42350e0b-cf93-4dab-9ba7-bc44f1903582",
+      "responseSha256": "b5749e004b6e7befb0d11c565fbc0a7d69b915a9e27303f9c13624059a4d9b21"
+    }
+  ],
+  "certificates": {}
+}
