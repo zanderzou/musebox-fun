@@ -53,7 +53,7 @@ for(const file of files){
     for(const [code,href] of expected)check(found.get(code)===href,`${route}: ${code} alternate`);
   }
   if(lang==="en"){
-    const sponsor=[...html.matchAll(/<a\b[^>]*href="https:\/\/www\.playbox\.com\/\?ref=zanderzou"[^>]*>/gi)];
+    const sponsor=[...html.matchAll(/<a\b[^>]*href="https:\/\/spicy-box\.com\/\?utm_ref=6cc1a8f534d264bd"[^>]*>/gi)];
     check(sponsor.length>=1&&sponsor.every(([tag])=>/rel="[^"]*sponsored\b[^"]*nofollow\b[^"]*"/i.test(tag))&&html.includes("Sponsored link:"),`${route}: promotion must be marked sponsored/nofollow and disclosed`);
   }
 }
