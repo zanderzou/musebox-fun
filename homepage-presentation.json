@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "domain": "musebox.fun",
+  "layout": false,
+  "promotionalUrls": [
+    "https://spicy-box.com/?utm_ref=6cc1a8f534d264bd"
+  ],
+  "footerRemoveIndices": [
+    1
+  ],
+  "footerByLang": {
+    "ar": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "de": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "es": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "fr": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "en": {
+      "count": 2,
+      "removeIndices": [
+        1
+      ]
+    },
+    "ja": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "ko": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "pt-BR": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "ru": {
+      "count": 1,
+      "removeIndices": []
+    },
+    "zh-Hant": {
+      "count": 1,
+      "removeIndices": []
+    }
+  },
+  "scope": "Only redundant shared-footer promotion copy, homepage source panels/inline provider links, forced homepage heading breaks and narrow heading/intro widths. Article content and publication state are preserved.",
+  "footerRemoveTexts": [
+    "Sponsored link: Get Started ↗. Our comparisons remain independent.",
+    "Sponsored link: Playbox. Our comparisons remain independent."
+  ]
+}

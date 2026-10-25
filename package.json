@@ -18,12 +18,14 @@
     "build:static": "node scripts/run-astro.mjs build --config astro.editorial.config.mjs && node scripts/prepare-sites-build.mjs && node scripts/finalize-localized-release.mjs",
     "test:i18n-release": "node scripts/audit-public-locales.mjs",
     "postbuild": "node scripts/audit-editorial-build.mjs",
-    "deploy:check": "node scripts/audit-editorial-build.mjs"
+    "deploy:check": "node scripts/audit-editorial-build.mjs",
+    "build:static:finalize": "node scripts/refine-homepage-presentation.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
     "@shikijs/vscode-textmate": "^10.0.2",
     "astro": "^7.3.3",
-    "ultrahtml": "1.7.0"
+    "ultrahtml": "1.7.0",
+    "parse5": "8.0.1"
   }
 }
