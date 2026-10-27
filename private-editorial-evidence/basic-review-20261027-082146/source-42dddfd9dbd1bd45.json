@@ -1,0 +1,11 @@
+{
+  "url": "https://musebox.ai/",
+  "finalUrl": "https://musebox.ai/",
+  "status": 200,
+  "checkedAt": "2026-10-27T09:22:12.854Z",
+  "robots": null,
+  "cache": "public, max-age=0, s-maxage=300",
+  "sha256": "b741da85e3f6f11434d58e5159427da384f6e927505a61623464a3411728da13",
+  "title": "Musebox — AI Video Generator",
+  "text": "grows into FREE space only. The section made the content taller than the column, free space went to zero, collapsed to 24px and the text landed at y=125 — visible for the whole pre-React moment on a cold load. Taking it out of flow fixes both halves: no flash, and gets its height back. This is the standard visually-hidden pattern rather than `display:none` — the text stays in the accessibility tree for screen readers, so it is still served to a real audience, not only to crawlers. Answer-engine bots (OAI-SearchBot, ClaudeBot, PerplexityBot) parse the markup and never apply CSS, so none of this reaches them. */ #seo-home { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); } Musebox 0 AI Video Generator Explore Collection All Video Picture New Top Rated"
+}

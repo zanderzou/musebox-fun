@@ -45,5 +45,59 @@
       "responseSha256": "b5749e004b6e7befb0d11c565fbc0a7d69b915a9e27303f9c13624059a4d9b21"
     }
   ],
-  "certificates": {}
+  "certificates": {
+    "musebox-ai-vs-io-account-receipt-identity": {
+      "schemaVersion": 1,
+      "skill": {
+        "name": "write-tested-seo",
+        "version": "1.5"
+      },
+      "reviewStandard": "portfolio-basic-quality-20261027",
+      "status": "validated",
+      "domain": "musebox.fun",
+      "slug": "musebox-ai-vs-io-account-receipt-identity",
+      "order": 4,
+      "releaseAt": "2026-10-30T05:51:20.013Z",
+      "activationAt": "2026-10-30T05:51:20.013Z",
+      "reviewedAt": "2026-10-27T09:34:20.204Z",
+      "factsCheckedAt": "2026-10-27T09:34:20.204Z",
+      "reviewedBy": "Codex independent article and primary-source review under October27 project override",
+      "contentSha256": "c87443f76da5fd2a27f4b9a3fa088d528e3c37f7b61b3bce712ec64101025400",
+      "editorialReview": {
+        "readable": true,
+        "useful": true,
+        "factual": true,
+        "experienceClaims": "none",
+        "note": "Current .ai video description and .io prompt-platform terms support domain/task distinction. No ownership or shared-account relation asserted."
+      },
+      "observations": [],
+      "officialSources": [
+        {
+          "url": "https://musebox.ai/",
+          "checkedAt": "2026-10-27T09:22:12.854Z",
+          "status": 200,
+          "claim": "Current .ai video description and .io prompt-platform terms support domain/task distinction. No ownership or shared-account relation asserted.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261027-082146/source-42dddfd9dbd1bd45.json",
+              "sha256": "53d48e78f1b897bf4b8eefe42fd890ca4fa3e7df9a20f7af6112d9bec2eb3dec"
+            }
+          ]
+        },
+        {
+          "url": "https://musebox.io/terms",
+          "checkedAt": "2026-10-27T09:22:13.635Z",
+          "status": 200,
+          "claim": "Current .ai video description and .io prompt-platform terms support domain/task distinction. No ownership or shared-account relation asserted.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261027-082146/source-c5ad5672e7beee34.json",
+              "sha256": "49fa026da5800aee6767760da982871e47e9244e4401d7870428ba3293312a78"
+            }
+          ]
+        }
+      ],
+      "certificateDigest": "ae1a729e9dadf855845a878c74b5922f679238a46eab762f8e1a82486df2f990"
+    }
+  }
 }

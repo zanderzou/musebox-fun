@@ -1,0 +1,16 @@
+{
+  "domain": "musebox.fun",
+  "slug": "musebox-ai-vs-io-account-receipt-identity",
+  "reviewedAt": "2026-10-27T09:34:20.204Z",
+  "standard": "portfolio-basic-quality-20261027",
+  "contentSha256": "c87443f76da5fd2a27f4b9a3fa088d528e3c37f7b61b3bce712ec64101025400",
+  "decision": "Current .ai video description and .io prompt-platform terms support domain/task distinction. No ownership or shared-account relation asserted.",
+  "materialChanges": false,
+  "limitations": "Sourced informational guide with clearly illustrative examples; no account, generation, billing, deletion or performance operation claimed.",
+  "sources": [
+    "https://musebox.ai/",
+    "https://musebox.io/terms"
+  ],
+  "activationAt": "2026-10-30T05:51:20.013Z",
+  "originalPlan": "2026-10-30T05:51:20.013Z"
+}
