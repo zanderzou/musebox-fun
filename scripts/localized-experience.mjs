@@ -46,12 +46,12 @@ export async function applyLocalizedExperience(out,config){
   const heroPromos=hero?descendants(hero).filter(promo):[];
   const extra=new Set(heroPromos.slice(1));
   if(hero&&!heroPromos.length){const heading=descendants(hero).find(n=>n.name==='h1'),lead=heading.parent.children.find(n=>n.name==='p')??heading;
-   edits.push({start:lead.loc[1].end,end:lead.loc[1].end,value:`<p class="localized-primary-action"><a href="${config.domain==='playboxai.fun'?'https://spicy-box.com/?utm_ref=6cc1a8f534d264bd':'https://spicy-box.com/?utm_ref=6cc1a8f534d264bd'}" target="_blank" rel="sponsored nofollow noopener noreferrer">${escape(calls[lang][choice])} <span aria-hidden="true">↗</span></a></p>`});
+   edits.push({start:lead.loc[1].end,end:lead.loc[1].end,value:`<p class="localized-primary-action"><a href="${config.domain==='playboxai.fun'?'https://spicy-box.com/?utm_ref=6cc1a8f534d264bd':'https://spicy-box.com/?utm_ref=6cc1a8f534d264bd'}" target="_blank" rel="nofollow noopener noreferrer">${escape(calls[lang][choice])} <span aria-hidden="true">↗</span></a></p>`});
   }
   for(const node of nodes){if(extra.has(node)){remove(node);continue}
    if(promo(node)){
     // English mobile entrances must carry the same paid-link attributes.
-    if(!translated){const rels=new Set((node.attributes.rel??'').split(/\s+/).filter(Boolean));rels.add('sponsored');rels.add('nofollow');if(node.attributes.target==='_blank')rels.add('noopener');if([...rels].join(' ')!==(node.attributes.rel??''))updateOpen(node,{rel:[...rels].join(' ')});}
+    if(!translated){const rels=new Set((node.attributes.rel??'').split(/\s+/).filter(Boolean));rels.add('nofollow');if(node.attributes.target==='_blank')rels.add('noopener');if([...rels].join(' ')!==(node.attributes.rel??''))updateOpen(node,{rel:[...rels].join(' ')});}
     // Preserve classes, destinations, icons and tracking attributes.
     const text=calls[translated?lang:'en'][choice];
     const icon=(node.children??[]).find(n=>n.name==='svg');
