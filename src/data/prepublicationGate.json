@@ -98,6 +98,99 @@
         }
       ],
       "certificateDigest": "ae1a729e9dadf855845a878c74b5922f679238a46eab762f8e1a82486df2f990"
+    },
+    "musebox-video-download-metadata-playback-check": {
+      "schemaVersion": 1,
+      "skill": {
+        "name": "write-tested-seo",
+        "version": "1.5"
+      },
+      "reviewStandard": "portfolio-basic-quality-20261027",
+      "status": "validated",
+      "domain": "musebox.fun",
+      "slug": "musebox-video-download-metadata-playback-check",
+      "order": 5,
+      "releaseAt": "2026-11-07T03:37:46.013Z",
+      "activationAt": "2026-11-07T03:37:46.013Z",
+      "reviewedAt": "2026-11-04T10:12:16.591Z",
+      "factsCheckedAt": "2026-11-04T10:00:22.195Z",
+      "reviewedBy": "Codex primary-source and independent final editorial review under October27human override",
+      "contentSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
+      "editorialReview": {
+        "readable": true,
+        "useful": true,
+        "factual": true,
+        "experienceClaims": "none",
+        "note": "Practical local inspection guide uses documented ffprobe options, distinguishes fictional1280x720/6second output from a measured platform export, and explains MDN metadata readiness limits. No generation, login, payment, media upload, or private-project collection is performed or claimed."
+      },
+      "observations": [],
+      "officialSources": [
+        {
+          "url": "https://musebox.ai/",
+          "status": "content-retrieved",
+          "checkedAt": "2026-11-04T09:58:24.387Z",
+          "claim": "The actual current public homepage says results can be downloaded from the collection.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/42dddfd9dbd1bd455184.json",
+              "sha256": "5f5c1a34dc706d63bce663870378b577d631a1e7fd00385fe09d8c6acf256932"
+            },
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/42dddfd9dbd1bd455184.html",
+              "sha256": "91f11043c4a415404450ee9c2e810e97779bf5fe629928b8b9d85ebb85d17d18"
+            }
+          ]
+        },
+        {
+          "url": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/doc/ffprobe.texi",
+          "status": "content-retrieved",
+          "checkedAt": "2026-11-04T10:00:22.195Z",
+          "claim": "Actual current official FFmpeg GitHub documentation source supports the same documented stream-selection, show_entries and JSON options linked by the article to the published ffprobe manual. The original manual URL timed out; no original-host HTTP200 is claimed.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/691a709324fc63c77ee0.json",
+              "sha256": "94f8e9cf0384ee0248ae2cf522737479ce4327ef84f409887ae84ea11b650bdd"
+            },
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/691a709324fc63c77ee0.txt",
+              "sha256": "98680e67dae597644afb3bef76cea912d15bd3b0215dd538104215ccc8544262"
+            }
+          ]
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration",
+          "status": "content-retrieved",
+          "checkedAt": "2026-11-04T09:58:35.644Z",
+          "claim": "The current MDN duration definition supports unavailable-before-loaded metadata.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/a6bda06648f266c54d40.json",
+              "sha256": "73c72a44830258e3c63a2d6a9455929081b57cf1e87497ecc344c2bf53162c6f"
+            },
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/a6bda06648f266c54d40.html",
+              "sha256": "312191c324e5f7dcff65d5e0a114e4a70976f7469639868b3ec6a03b40e38750"
+            }
+          ]
+        },
+        {
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoWidth",
+          "status": "content-retrieved",
+          "checkedAt": "2026-11-04T09:58:35.744Z",
+          "claim": "The current MDN videoWidth definition distinguishes intrinsic width from CSS size and documents0 at HAVE_NOTHING.",
+          "evidence": [
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/d4c83bd45c99b0d5cd6f.json",
+              "sha256": "69867b71cb34ecdb679b4690e3e85e9448c6aae5519c944ce3449984d1ed15c9"
+            },
+            {
+              "path": "private-editorial-evidence/basic-review-20261104-095234/d4c83bd45c99b0d5cd6f.html",
+              "sha256": "9e20fe4e36f365fcec725927b696bb8d49a53211f8ec3b354072b44d49d2253f"
+            }
+          ]
+        }
+      ],
+      "certificateDigest": "54db5ed5fbf45a7f8c91c6194b16ae50789951855f7dafed7328a205d5bc3e7e"
     }
   }
 }

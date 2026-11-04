@@ -119,7 +119,7 @@
       "language": "en",
       "approved": true,
       "status": "editorially-reviewed",
-      "sourcesCheckedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-11-04",
       "reviewedSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
       "wordCount": 452,
       "editorialIntent": "A read-only ffprobe example, a fictional result interpretation and the distinction between unloaded browser metadata and corrupt media.",

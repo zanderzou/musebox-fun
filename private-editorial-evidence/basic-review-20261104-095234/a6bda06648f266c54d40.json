@@ -1,0 +1,16 @@
+{
+  "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration",
+  "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration",
+  "status": 200,
+  "checkedAt": "2026-11-04T09:58:35.644Z",
+  "robots": null,
+  "cache": "public, max-age=3600",
+  "contentType": "text/html",
+  "lastModified": "Wed, 04 Nov 2026 00:57:21 GMT",
+  "httpDate": "Wed, 04 Nov 2026 09:58:37 GMT",
+  "retryAfter": null,
+  "cfRay": null,
+  "sha256": "312191c324e5f7dcff65d5e0a114e4a70976f7469639868b3ec6a03b40e38750",
+  "retrieval": "Actual native HTTPS GET",
+  "bodyEvidence": "a6bda06648f266c54d40.html"
+}

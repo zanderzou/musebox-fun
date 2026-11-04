@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-04T10:05:48.195Z",
+  "reviewer": "Codex independent source-review child group B",
+  "reviewStandard": "portfolio-basic-quality-20261027",
+  "skill": {
+    "name": "write-tested-seo",
+    "version": "1.5",
+    "humanOverride": "Useful truthful sourced information guides need no forced product testing or rigid24h certificate."
+  },
+  "domain": "musebox.fun",
+  "slug": "musebox-video-download-metadata-playback-check",
+  "file": "src/editorial-drafts/musebox-video-download-metadata-playback-check.md",
+  "sourceCommit": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+  "productionAtVerifiedInventory": {
+    "id": "e7c92a61-174e-47fd-8a64-d7e59ac8af45",
+    "url": "https://e7c92a61.musebox-fun.pages.dev",
+    "commit": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+    "sourceShaRaw": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+    "createdAt": "2026-10-29T13:22:57.899016Z"
+  },
+  "originalContentSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
+  "rawContentSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
+  "finalRecommendedContentSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
+  "finalContentSha256": "8b18fc24a8ccafc97cd56d4be5180821d7a3e626019b1f260eea7b131359b2b8",
+  "finalCopy": "source-reviews/musebox.fun/musebox-video-download-metadata-playback-check-recommended-final.md",
+  "contentModified": false,
+  "requiredContentChanges": [],
+  "basicQualityPassed": true,
+  "readerIntent": "Inspect an existing authorized video file locally and distinguish encoded file properties from a browser player whose metadata has not loaded.",
+  "editorialSummary": "Practical local inspection guide uses documented ffprobe options, distinguishes fictional1280x720/6second output from a measured platform export, and explains MDN metadata readiness limits. No generation, login, payment, media upload, or private-project collection is performed or claimed.",
+  "checks": {
+    "clearReaderQuestion": true,
+    "usefulConcreteGuidance": true,
+    "readableEnglish": true,
+    "keyClaimsSupported": true,
+    "honestLimits": true,
+    "noInventedExperience": true,
+    "originalDatesPreserved": true,
+    "originalUrlsPreserved": true
+  },
+  "claimReview": [
+    {
+      "articleClaim": "Musebox public homepage describes downloading results, without establishing any particular downloaded file.",
+      "assessment": "Supported by the corresponding current original primary source or a bounded logical distinction; no actual product test asserted."
+    },
+    {
+      "articleClaim": "FFmpeg official source documents ffprobe stream selection, show_entries section syntax and JSON output.",
+      "assessment": "Supported by the corresponding current original primary source or a bounded logical distinction; no actual product test asserted."
+    },
+    {
+      "articleClaim": "MDN duration may be NaN before data is available, and intrinsic videoWidth is0 at HAVE_NOTHING; neither proves a corrupt saved file.",
+      "assessment": "Supported by the corresponding current original primary source or a bounded logical distinction; no actual product test asserted."
+    }
+  ],
+  "officialSources": [
+    {
+      "url": "https://musebox.ai/",
+      "status": 200,
+      "checkedAt": "2026-11-04T09:58:24.387Z",
+      "bodySha256": "91f11043c4a415404450ee9c2e810e97779bf5fe629928b8b9d85ebb85d17d18",
+      "bodyEvidence": "source-reviews/musebox.fun/42dddfd9dbd1bd455184.html",
+      "evidence": "source-reviews/musebox.fun/42dddfd9dbd1bd455184.json",
+      "evidenceSha256": "5f5c1a34dc706d63bce663870378b577d631a1e7fd00385fe09d8c6acf256932",
+      "actualPrimaryTextRead": true,
+      "claim": "The actual current public homepage says results can be downloaded from the collection."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/doc/ffprobe.texi",
+      "retrievedUrl": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/doc/ffprobe.texi",
+      "status": 200,
+      "checkedAt": "2026-11-04T10:00:22.195Z",
+      "bodySha256": "98680e67dae597644afb3bef76cea912d15bd3b0215dd538104215ccc8544262",
+      "bodyEvidence": "source-reviews/musebox.fun/691a709324fc63c77ee0.txt",
+      "evidence": "source-reviews/musebox.fun/691a709324fc63c77ee0.json",
+      "evidenceSha256": "94f8e9cf0384ee0248ae2cf522737479ce4327ef84f409887ae84ea11b650bdd",
+      "actualPrimaryTextRead": true,
+      "claim": "Actual current official FFmpeg GitHub documentation source supports the same documented stream-selection, show_entries and JSON options linked by the article to the published ffprobe manual. The original manual URL timed out; no original-host HTTP200 is claimed.",
+      "retrievalLimit": "Original published documentation host timed out; actual official source documentation GET returned200. Published article documentation link remains unchanged.",
+      "articleSourceUrl": "https://ffmpeg.org/ffprobe.html"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration",
+      "status": 200,
+      "checkedAt": "2026-11-04T09:58:35.644Z",
+      "bodySha256": "312191c324e5f7dcff65d5e0a114e4a70976f7469639868b3ec6a03b40e38750",
+      "bodyEvidence": "source-reviews/musebox.fun/a6bda06648f266c54d40.html",
+      "evidence": "source-reviews/musebox.fun/a6bda06648f266c54d40.json",
+      "evidenceSha256": "73c72a44830258e3c63a2d6a9455929081b57cf1e87497ecc344c2bf53162c6f",
+      "actualPrimaryTextRead": true,
+      "claim": "The current MDN duration definition supports unavailable-before-loaded metadata."
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoWidth",
+      "status": 200,
+      "checkedAt": "2026-11-04T09:58:35.744Z",
+      "bodySha256": "9e20fe4e36f365fcec725927b696bb8d49a53211f8ec3b354072b44d49d2253f",
+      "bodyEvidence": "source-reviews/musebox.fun/d4c83bd45c99b0d5cd6f.html",
+      "evidence": "source-reviews/musebox.fun/d4c83bd45c99b0d5cd6f.json",
+      "evidenceSha256": "69867b71cb34ecdb679b4690e3e85e9448c6aae5519c944ce3449984d1ed15c9",
+      "actualPrimaryTextRead": true,
+      "claim": "The current MDN videoWidth definition distinguishes intrinsic width from CSS size and documents0 at HAVE_NOTHING."
+    }
+  ],
+  "limits": [
+    "No Musebox account, paid export or actual user video was tested.",
+    "The ffprobe command is an inspection example, and the1280x720/6.0second result is explicitly fictional.",
+    "Original ffmpeg.org documentation requests timed out; current original FFmpeg GitHub documentation source was successfully opened and retrieved200. Human-facing documentation URL is retained because timeout is not proof of a broken link."
+  ],
+  "approvalCertificateOrRepositoryChangesPerformed": false,
+  "changeType": "none",
+  "materialRevision": false,
+  "metadataRevision": false,
+  "finalWordCount": 452,
+  "parentReviewedAt": "2026-11-04T10:12:16.590Z",
+  "parentReview": "Final original-source attribution independently corrected to the actual successfully retrieved official FFmpeg GitHub document; original ffmpeg.org timeout preserved honestly and human-facing article URL retained.",
+  "currentPublicPrefixBeforeBuild": {
+    "source": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+    "production": {
+      "id": "e7c92a61-174e-47fd-8a64-d7e59ac8af45",
+      "url": "https://e7c92a61.musebox-fun.pages.dev",
+      "commit": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+      "sourceShaRaw": "53c83ae47da03c125e69dc788b300d2ce1fdd59c",
+      "createdAt": "2026-10-29T13:22:57.899016Z"
+    },
+    "phase": 4,
+    "proof": "Previously saved actual baseline-readback.json plus four200predecessor HTML and correct discovery/private5 proof unchanged."
+  }
+}

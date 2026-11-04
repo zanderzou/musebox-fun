@@ -1,0 +1,16 @@
+{
+  "url": "https://musebox.ai/",
+  "finalUrl": "https://musebox.ai/",
+  "status": 200,
+  "checkedAt": "2026-11-04T09:58:24.387Z",
+  "robots": null,
+  "cache": "public, max-age=0, s-maxage=300",
+  "contentType": "text/html; charset=utf-8",
+  "lastModified": "Tue, 03 Nov 2026 17:54:12 UTC",
+  "httpDate": "Wed, 04 Nov 2026 09:58:25 GMT",
+  "retryAfter": null,
+  "cfRay": "a552c29a8d7515a5-LHR",
+  "sha256": "91f11043c4a415404450ee9c2e810e97779bf5fe629928b8b9d85ebb85d17d18",
+  "retrieval": "Actual native HTTPS GET",
+  "bodyEvidence": "42dddfd9dbd1bd455184.html"
+}

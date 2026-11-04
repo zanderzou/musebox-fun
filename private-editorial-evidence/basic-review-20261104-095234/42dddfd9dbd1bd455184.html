@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en" translate="no">
+  <head>
+    
+    <meta name="google" content="notranslate" />
+
+    
+    <script>
+      (function () {
+        try {
+          var c = localStorage.getItem('musebox_theme');
+          var dark;
+          if (c === 'light') dark = false;
+          else if (c === 'dark') dark = true;
+          else dark = !window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) { document.documentElement.classList.add('dark'); }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#0a0b0c" />
+    <meta name="description" content="AI video generator: turn your images into stunning AI-powered videos. Professional image-to-video generation with advanced AI models." />
+    <meta name="keywords" content="AI video generator, image to video, AI animation, video creation, artificial intelligence, AI content creator" />
+    <meta name="author" content="Musebox" />
+
+    
+    <link rel="preconnect" href="https://cdn.musebox.ai" />
+    <link rel="dns-prefetch" href="https://cdn.musebox.ai" />
+    
+    <link rel="preconnect" href="https://api.musebox.ai" crossorigin />
+    <link rel="dns-prefetch" href="https://api.musebox.ai" />
+
+    
+    
+    <script>
+      (function () {
+        try {
+          var shipped = ['en', 'ru', 'es', 'pt-BR', 'de', 'fr', 'ja', 'vi', 'th', 'ko', 'id', 'tr', 'pl', 'it'];
+          var norm = function (tag) {
+            if (!tag) return null;
+            var t = String(tag).trim().toLowerCase();
+            for (var i = 0; i < shipped.length; i++) if (shipped[i].toLowerCase() === t) return shipped[i];
+            var base = t.split('-')[0];
+            if (base === 'pt') return 'pt-BR';
+            if (base === 'in') return 'id';
+            return shipped.indexOf(base) >= 0 ? base : null;
+          };
+          var stored = localStorage.getItem('musebox_locale');
+          var lng = stored && shipped.indexOf(stored) >= 0 ? stored : null;
+          if (!lng) {
+            var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+            for (var j = 0; j < langs.length && !lng; j++) lng = norm(langs[j]);
+          }
+          if (!lng || lng === 'en') return;
+          var ns = ['common', 'explore', 'layout', 'auth', 'collection', 'subscription', 'vip', 'onboarding'];
+          var files = {};
+          for (var k = 0; k < ns.length; k++) {
+            var url = '/locales/' + lng + '/' + ns[k] + '.json';
+            files[url] = fetch(url).then(function (r) { return r.ok ? r.text() : null; }).catch(function () { return null; });
+          }
+          window.__mbLocalePreload = { lng: lng, files: files };
+        } catch (_) { /* storage blocked etc. — i18n fetches normally */ }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        try {
+          if (location.pathname !== '/') return;
+          if (localStorage.getItem('musebox_auth')) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          window.__mbModelsPreload = fetch(base + '/models?page=1&limit=20&sort=all', {
+            headers: { accept: 'application/json' },
+          }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        } catch (_) { /* storage blocked etc. — app fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (location.pathname !== '/reels') return;
+          if (localStorage.getItem('musebox_auth')) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          var seed = window.crypto && crypto.randomUUID ? crypto.randomUUID() : String(Math.random());
+          window.__mbFeedPreload = {
+            seed: seed,
+            data: fetch(base + '/feed?seed=' + encodeURIComponent(seed) + '&filter=all', {
+              headers: { accept: 'application/json' },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+          };
+        } catch (_) { /* storage blocked etc. — Feed fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (location.pathname !== '/sex-shorts') return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          window.__mbShortsEntryPreload = {
+            at: Date.now(),
+            data: fetch(base + '/shorts/entry', {
+              headers: { accept: 'application/json', authorization: 'Bearer ' + token, 'x-page': location.pathname },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+          };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (!/^\/train\/?$/.test(location.pathname)) return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          var get = function (path) {
+            return fetch(base + path, {
+              headers: { accept: 'application/json', authorization: 'Bearer ' + token, 'x-page': location.pathname },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+          };
+          window.__mbTrainPreload = { at: Date.now(), list: get('/train'), price: get('/train/price') };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (!/^\/stories(?:\/(?:my|authored))?\/?$/.test(location.pathname)) return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          var get = function (path) {
+            return fetch(base + path, {
+              headers: { accept: 'application/json', authorization: 'Bearer ' + token, 'x-page': location.pathname },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+          };
+          window.__mbStoriesPreload = { at: Date.now(), novels: get('/novels'), sessions: get('/novels/my-sessions'), gift: get('/gift-card') };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          var profile = /^\/profile\/?$/.test(location.pathname);
+          if (!profile && !/^\/affiliate\/?$/.test(location.pathname)) return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          var get = function (path) {
+            return fetch(base + path, {
+              headers: { accept: 'application/json', authorization: 'Bearer ' + token, 'x-page': location.pathname },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+          };
+          window.__mbProfilePreload = {
+            at: Date.now(),
+            affiliate: get('/affiliate'),
+            tx: profile ? get('/tokens/transactions') : undefined,
+            retention: profile ? get('/auth/profile/media-retention') : undefined,
+          };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (!/^\/remix\/?$/.test(location.pathname)) return;
+          if (/[?&]demo=/.test(location.search)) return;
+          if (sessionStorage.getItem('musebox_edit_demo') === '1') return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          window.__mbEditTemplatesPreload = {
+            at: Date.now(),
+            data: fetch(base + '/edit/templates', {
+              headers: { accept: 'application/json', authorization: 'Bearer ' + token, 'x-page': location.pathname },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+          };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          if (location.pathname !== '/characters') return;
+          if (/[?&](q|attrs)=/.test(location.search)) return;
+          var chat = 'https://box-chat-gudy.onrender.com';
+          if (!chat || chat.charAt(0) === '%') return;
+          var saved = localStorage.getItem('musebox_auth');
+          var token = saved && JSON.parse(saved).token;
+          if (!token) return;
+          var path = '/catalog/characters?limit=24&offset=0';
+          window.__mbCatalogPreload = {
+            at: Date.now(),
+            path: path,
+            data: fetch(chat.replace(/\/+$/, '') + '/api/chat' + path, {
+              headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+            }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+          };
+        } catch (_) { /* storage blocked, unreadable auth — the page fetches normally */ }
+      })();
+    </script>
+
+    
+    <script>
+      (function () {
+        try {
+          var base = 'https://api.musebox.ai/api';
+          if (!base || base.charAt(0) === '%') base = '/api';
+          window.__mbConfigPreload = fetch(base + '/config', {
+            headers: { accept: 'application/json' },
+          }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        } catch (_) { /* app fetches normally */ }
+      })();
+    </script>
+
+    
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Musebox" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152.png" />
+
+    
+    <meta property="og:title" content="Musebox — AI Video Generator" />
+    <meta property="og:description" content="Transform your images into stunning AI-powered videos." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://musebox.ai/og-image.jpg" />
+    <meta property="og:image:width" content="1408" />
+    <meta property="og:image:height" content="736" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="Musebox — AI Video Generator" />
+    <meta property="og:site_name" content="Musebox" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://musebox.ai/" />
+
+    
+    <script>
+      (function () {
+        try {
+          var href = 'https://musebox.ai' + location.pathname;
+          var link = document.createElement('link');
+          link.rel = 'canonical';
+          link.href = href;
+          document.head.appendChild(link);
+          var og = document.querySelector('meta[property="og:url"]');
+          if (og) og.setAttribute('content', href);
+        } catch (e) { /* canonical is a hint, never worth breaking boot over */ }
+      })();
+    </script>
+
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Musebox — AI Video Generator" />
+    <meta name="twitter:description" content="Transform your images into stunning AI-powered videos." />
+    <meta name="twitter:image" content="https://musebox.ai/og-image.jpg" />
+
+    
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://musebox.ai/#organization","name":"Musebox","url":"https://musebox.ai/","logo":"https://musebox.ai/logo.svg","sameAs":["https://x.com/MuseboxAi","https://www.reddit.com/user/MuseBoxAI/","https://t.me/museboxai_c"]},{"@type":"WebSite","@id":"https://musebox.ai/#website","name":"Musebox","url":"https://musebox.ai/","publisher":{"@id":"https://musebox.ai/#organization"},"inLanguage":"en"},{"@type":"SoftwareApplication","@id":"https://musebox.ai/#app","name":"Musebox","url":"https://musebox.ai/","applicationCategory":"MultimediaApplication","operatingSystem":"Web","description":"AI video and image generator: turn a photo into a short video, generate images from text, extend clips and train private models.","publisher":{"@id":"https://musebox.ai/#organization"}}]}</script>
+
+    
+
+    <title>Musebox — AI Video Generator</title>
+
+    
+    <style>
+      #app-skeleton nav,
+      #app-skeleton .filter-bar {
+        display: none !important;
+      }
+
+      /* The served-markup description (#seo-home) is for clients that parse
+         HTML without running our bundle. It was laid out below the first
+         viewport, but that only held while the skeleton was shorter than the
+         screen: #app-skeleton is a 100dvh flex column, and `flex:1` on <main>
+         grows into FREE space only. The section made the content taller than
+         the column, free space went to zero, <main> collapsed to 24px and the
+         text landed at y=125 — visible for the whole pre-React moment on a
+         cold load.
+         Taking it out of flow fixes both halves: no flash, and <main> gets its
+         height back. This is the standard visually-hidden pattern rather than
+         `display:none` — the text stays in the accessibility tree for screen
+         readers, so it is still served to a real audience, not only to
+         crawlers. Answer-engine bots (OAI-SearchBot, ClaudeBot, PerplexityBot)
+         parse the markup and never apply CSS, so none of this reaches them. */
+      #seo-home {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+      }
+    </style>
+
+    
+
+    
+    <script>
+      (function () {
+        var KEY = 'musebox_boot_reload';
+        // Only act on our own /assets/* bundles — Vite's hashed output dir
+        // on the same origin. Skip everything else (cross-origin scripts
+        // like GA, Turnstile, Cloudflare challenges) to avoid spurious
+        // reloads when third parties hiccup.
+        function isOurAsset(u) {
+          if (typeof u !== 'string') return false;
+          var sameOrigin = u.indexOf(location.origin + '/') === 0 || u.charAt(0) === '/';
+          return sameOrigin && u.indexOf('/assets/') !== -1;
+        }
+        // A browser that refuses sessionStorage (Chrome with site data
+        // blocked throws on the accessor, WebKit in Lockdown mode on the
+        // methods) still reloads — once per page load, on this flag.
+        var reloaded = false;
+        function recover() {
+          if (reloaded) return;
+          try { if (sessionStorage.getItem(KEY)) return; } catch (_) {}
+          reloaded = true;
+          try { sessionStorage.setItem(KEY, '1'); } catch (_) {}
+          // Tear down the service worker + workbox precache. The SW
+          // precaches index.html, so a plain reload would hit it and serve
+          // the same stale HTML referencing the missing /assets/* hashes —
+          // creating an infinite black-screen loop. Unregister + clear
+          // caches forces the next navigation to go to network.
+          var done = function () {
+            location.reload();
+          };
+          try {
+            var ops = [];
+            // A missing asset answers 404 with max-age=14400: the browser
+            // keeps it for four hours and the reload would read it straight
+            // back. `force-cache` shows what the cache holds at no network
+            // cost, `reload` overwrites a bad entry (same step as
+            // refreshCached404s in stale-deploy-recovery.ts).
+            if (window.fetch) {
+              var els = document.querySelectorAll('script[src], link[rel="modulepreload"], link[rel="preload"], link[rel="stylesheet"]');
+              for (var i = 0; i < els.length; i++) (function (u) {
+                if (!isOurAsset(u)) return;
+                ops.push(
+                  fetch(u, { cache: 'force-cache' }).then(function (r) {
+                    return r.ok ? null : fetch(u, { cache: 'reload' });
+                  }).catch(function () {})
+                );
+              })(els[i].src || els[i].href || '');
+            }
+            if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+              ops.push(
+                navigator.serviceWorker.getRegistrations().then(function (regs) {
+                  return Promise.all(regs.map(function (r) { return r.unregister(); }));
+                })
+              );
+            }
+            if (window.caches && caches.keys) {
+              ops.push(
+                caches.keys().then(function (keys) {
+                  return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+                })
+              );
+            }
+            if (ops.length) {
+              Promise.all(ops).then(done, done);
+              // Safety net — never wait more than 1.5s, the user is already
+              // staring at a black screen.
+              setTimeout(done, 1500);
+            } else {
+              done();
+            }
+          } catch (_) { done(); }
+        }
+        window.addEventListener('error', function (e) {
+          var t = e && e.target;
+          if (!t || t === window) return;
+          if (!isOurAsset(t.src || t.href || '')) return;
+          recover();
+        }, true);
+        // Clear the guard after 5 min so a later deploy-race in the same
+        // tab can recover. Shorter would risk reload-loops on real outages;
+        // longer would leave a wedged session unable to self-heal.
+        setTimeout(function () {
+          try { sessionStorage.removeItem(KEY); } catch (_) {}
+        }, 300000);
+      })();
+    </script>
+
+    
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4SVP8NM325', { send_page_view: false });
+      // Load the 162KB gtag library well PAST the LCP window. At window.load it
+      // still landed inside the Lantern render window (trace: ended ~2.2s) and
+      // its download+eval competed with the main thread painting the first
+      // cover. Defer to a post-load idle: events fired before it arrives stay
+      // queued in dataLayer and flush on
+      // boot, so no GA data is lost for the cold-visit scenario.
+      (function () {
+        var injected = false;
+        function loadGtag() {
+          if (injected) return; injected = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-4SVP8NM325';
+          document.head.appendChild(s);
+        }
+        window.addEventListener('load', function () {
+          setTimeout(function () {
+            if (typeof window.requestIdleCallback === 'function') window.requestIdleCallback(loadGtag, { timeout: 4000 });
+            else loadGtag();
+          }, 3000);
+        });
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CJes1xN9.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-CYJ0Cy1u.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-ui-DFnzNaCp.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CeCZWAar.css" media="print" data-mb-async-css onload="this.media='all'"><noscript><link rel="stylesheet" crossorigin href="/assets/index-CeCZWAar.css"></noscript>
+  <script>(function(){var r=[["^/sex-shorts(?:/|$)",["/assets/Shorts-DIKGWFEO.js","/assets/ShortsExperience-BQR6lctG.js","/assets/shorts.service-D68CMh09.js","/assets/BuyCreditsModal-Bsz215aZ.js","/assets/top-layer-CtbFlNyw.js","/assets/useCryptoCoins-dWBJcWEX.js","/assets/VoltpayPaySection-uKOpZDL0.js","/assets/currency-BJ5-CnHr.js","/assets/creditPackages-URx518Mj.js","/assets/generate.service-CJk58jwP.js","/assets/useGenerationCapacity-D25uvU_Y.js","/assets/useActiveFeedItem-D__6EDfF.js","/assets/ConfirmModal-B9cFF3zT.js","/assets/focus-trap-CNApRS2P.js","/assets/FeedActionButton-Ch_cR9vk.js"]],["^/subscription/?$",["/assets/Subscription-C4vsENpN.js","/assets/currency-BJ5-CnHr.js","/assets/useSpecialOffer-CKRkFylD.js","/assets/creditPackages-URx518Mj.js","/assets/tokens.service-CjoDQkvh.js","/assets/promo-code.service-BzAG-PeJ.js","/assets/SubscriptionPayModal-BpSZbXPn.js","/assets/useCryptoCoins-dWBJcWEX.js","/assets/VoltpayPaySection-uKOpZDL0.js","/assets/GiftModeToggle-D-AGPM_Y.js"]]],p=location.pathname;for(var i=0;i<r.length;i++)if(new RegExp(r[i][0]).test(p)){for(var j=0;j<r[i][1].length;j++){var l=document.createElement('link');l.rel='modulepreload';l.crossOrigin='';l.href=r[i][1][j];document.head.appendChild(l);}break;}})();</script><link rel="manifest" href="/manifest.webmanifest"></head>
+  <body style="background-color: #0a0b0c">
+    <div id="root">
+      
+      <div id="app-skeleton" style="font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#fff;min-height:100dvh;display:flex;flex-direction:column;background:#0a0b0c">
+        
+        <header style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #1a1b1e;background:#111214">
+          <div style="display:flex;align-items:center;gap:8px">
+            <img src="/logo.svg" alt="" width="32" height="32" style="border-radius:8px" />
+            <span style="font-weight:700;font-size:18px">Musebox</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="display:flex;align-items:center;gap:6px;background:#2a2b2e33;border-radius:9999px;padding:6px 12px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#9ca3af" stroke="#9ca3af" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span style="font-size:14px;font-weight:600;color:#9ca3af">0</span>
+            </div>
+            <div style="width:36px;height:36px;border-radius:9999px;background:#1a1b1e;border:1px solid #2a2b2e;display:flex;align-items:center;justify-content:center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+          </div>
+        </header>
+        
+        <div style="max-width:2000px;width:100%;margin:0 auto;padding:12px 12px 0" id="skeleton-h1">
+          <h1 style="display:inline-flex;align-items:center;gap:8px;margin:0;padding:4px 12px;border-radius:9999px;border:1px solid rgba(67,97,238,.35);background:rgba(67,97,238,.13);color:#5b7bf7;font-size:11px;line-height:16px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase">
+            <span style="width:6px;height:6px;border-radius:9999px;background:#5b7bf7"></span>AI Video Generator
+          </h1>
+        </div>
+        <script>if (location.pathname !== '/') { var mbH1 = document.getElementById('skeleton-h1'); if (mbH1) mbH1.remove(); }</script>
+        
+        <nav style="max-width:1280px;width:100%;margin:0 auto;padding:12px 16px;display:flex;gap:24px">
+          <span style="font-size:14px;font-weight:500;color:#fff;padding-bottom:8px;border-bottom:2px solid #fff">Explore</span>
+          <span style="font-size:14px;font-weight:500;color:#6b7280;padding-bottom:8px">Collection</span>
+        </nav>
+        
+        <main style="flex:1;max-width:1280px;width:100%;margin:0 auto;padding:0 16px 24px">
+          
+          <div class="filter-bar" style="display:flex;gap:8px;margin-bottom:12px;overflow-x:auto">
+            <div style="width:40px;height:40px;background:#111214;border-radius:16px;flex-shrink:0"></div>
+            <div style="padding:8px 16px;background:#4361ee;color:#fff;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap">All</div>
+            <div style="padding:8px 16px;background:#111214;color:#6b7280;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap">Video</div>
+            <div style="padding:8px 16px;background:#111214;color:#6b7280;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap">Picture</div>
+            <div style="padding:8px 16px;background:#111214;color:#6b7280;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap">New</div>
+            <div style="padding:8px 16px;background:#111214;color:#6b7280;border-radius:16px;font-size:14px;font-weight:500;white-space:nowrap">Top Rated</div>
+          </div>
+          
+        </main>
+        
+        <section id="seo-home" style="max-width:1280px;width:100%;margin:0 auto;padding:32px 16px 48px;color:#6b7280;font-size:13px;line-height:1.7">
+          <h2 style="font-size:16px;color:#9ca3af;margin:0 0 12px">Musebox AI — AI video and image generator</h2>
+          <p style="margin:0 0 12px">
+            Musebox AI turns a still photo into a moving clip. Upload an image, pick a
+            template, and the model animates it — no prompt engineering, no local GPU, no install.
+            Generation runs on our own hardware and finishes in about a minute; results land in
+            your collection, where you can download them or use them as the starting frame for
+            the next clip.
+          </p>
+          <p style="margin:0 0 12px">
+            Image-to-video is the core of it. Alongside it: text-to-image generation, extending a
+            finished clip into a longer sequence, adding a soundtrack, and a character builder for
+            keeping the same face across a whole set of shots. Output runs from 720p up to 1020p
+            on the higher tiers, at five to twelve seconds a clip.
+          </p>
+          <p style="margin:0 0 12px">
+            Templates cover most of what people ask for, but you can also train the platform on
+            your own footage: upload a handful of clips and you get a private model that
+            reproduces that subject in any template. Training runs unattended and takes a few
+            hours.
+          </p>
+          <p style="margin:0 0 12px">
+            Pricing is credits, not seats — you pay per generation, and a free balance comes with
+            the account, so the first clips cost nothing. Payment is by card or crypto. The
+            interface is available in 13 languages. Studios and developers can reach the same
+            generation pipeline over a REST API with per-plan rate limits.
+          </p>
+          <nav style="margin:16px 0 0">
+            <a href="/ai-video-generator/" style="color:#8b9dff;margin-right:16px">AI video generator</a>
+            <a href="/blog" style="color:#8b9dff;margin-right:16px">Blog</a>
+            <a href="/subscription" style="color:#8b9dff;margin-right:16px">Pricing</a>
+            <a href="/guide" style="color:#8b9dff;margin-right:16px">Guide</a>
+            <a href="/api-access" style="color:#8b9dff;margin-right:16px">API access</a>
+            <a href="/telegram-tutorial" style="color:#8b9dff;margin-right:16px">Telegram bot</a>
+            <a href="/crypto-tutorial" style="color:#8b9dff;margin-right:16px">Paying with crypto</a>
+            <a href="/contact" style="color:#8b9dff;margin-right:16px">Contact</a>
+            <a href="/terms" style="color:#8b9dff;margin-right:16px">Terms</a>
+            <a href="/privacy" style="color:#8b9dff">Privacy</a>
+          </nav>
+          <h2 style="font-size:16px;color:#9ca3af;margin:28px 0 12px">Common questions</h2>
+          <h3 style="font-size:13px;color:#9ca3af;margin:0 0 4px">Do I need a GPU or any software?</h3>
+          <p style="margin:0 0 12px">No. Everything runs in the browser against our own GPUs. There is nothing to install.</p>
+          <h3 style="font-size:13px;color:#9ca3af;margin:0 0 4px">How long does one video take?</h3>
+          <p style="margin:0 0 12px">Around a minute for a standard clip. Longer clips and higher resolutions take proportionally more.</p>
+          <h3 style="font-size:13px;color:#9ca3af;margin:0 0 4px">Is there a free tier?</h3>
+          <p style="margin:0 0 12px">Every account starts with a credit balance, so you can generate before paying anything. After that, credits are bought outright or come monthly with a plan.</p>
+          <h3 style="font-size:13px;color:#9ca3af;margin:0 0 4px">Can I train a model on my own footage?</h3>
+          <p style="margin:0 0 12px">Yes. Upload your clips and the platform trains a private model from them, usable in any template afterwards.</p>
+          <h3 style="font-size:13px;color:#9ca3af;margin:0 0 4px">Is there an API?</h3>
+          <p style="margin:0 0 12px">Yes — the same generation pipeline is available over REST, with rate limits set per plan.</p>
+        </section>
+        
+        <script>if (location.pathname !== '/') { var mbSeo = document.getElementById('seo-home'); if (mbSeo) mbSeo.remove(); }</script>
+      </div>
+    </div>
+  </body>
+</html>

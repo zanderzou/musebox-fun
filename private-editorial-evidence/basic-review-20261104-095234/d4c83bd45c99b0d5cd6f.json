@@ -1,0 +1,16 @@
+{
+  "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoWidth",
+  "finalUrl": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoWidth",
+  "status": 200,
+  "checkedAt": "2026-11-04T09:58:35.744Z",
+  "robots": null,
+  "cache": "public, max-age=3600",
+  "contentType": "text/html",
+  "lastModified": "Wed, 04 Nov 2026 00:58:00 GMT",
+  "httpDate": "Wed, 04 Nov 2026 09:58:37 GMT",
+  "retryAfter": null,
+  "cfRay": null,
+  "sha256": "9e20fe4e36f365fcec725927b696bb8d49a53211f8ec3b354072b44d49d2253f",
+  "retrieval": "Actual native HTTPS GET",
+  "bodyEvidence": "d4c83bd45c99b0d5cd6f.html"
+}

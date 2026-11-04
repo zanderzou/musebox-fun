@@ -1,0 +1,16 @@
+{
+  "url": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/doc/ffprobe.texi",
+  "finalUrl": "https://raw.githubusercontent.com/FFmpeg/FFmpeg/master/doc/ffprobe.texi",
+  "status": 200,
+  "checkedAt": "2026-11-04T10:00:22.195Z",
+  "robots": null,
+  "cache": "max-age=300",
+  "contentType": "text/plain; charset=utf-8",
+  "lastModified": null,
+  "httpDate": "Wed, 04 Nov 2026 10:00:23 GMT",
+  "retryAfter": null,
+  "cfRay": null,
+  "sha256": "98680e67dae597644afb3bef76cea912d15bd3b0215dd538104215ccc8544262",
+  "retrieval": "Actual public official FFmpeg GitHub documentation source GET",
+  "bodyEvidence": "691a709324fc63c77ee0.txt"
+}
