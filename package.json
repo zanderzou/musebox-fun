@@ -19,7 +19,8 @@
     "test:i18n-release": "node scripts/audit-public-locales.mjs",
     "postbuild": "node scripts/audit-editorial-build.mjs",
     "deploy:check": "node scripts/audit-editorial-build.mjs",
-    "build:static:finalize": "node scripts/refine-homepage-presentation.mjs"
+    "build:static:finalize": "node scripts/refine-homepage-presentation.mjs",
+    "sanitize:outbound": "node scripts/sanitize-outbound-links.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
